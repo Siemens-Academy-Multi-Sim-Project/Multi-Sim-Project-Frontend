@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 body{
     background-image: linear-gradient(to right, rgba(1, 36, 88, 0.81) , rgba(6, 28, 62, 1));
-    height: 100%;
+    height: 100vh;
+    width: 100%;
+    
+}
+*{
+    margin: 0;
+    padding: 0;
 }
 
 .profiling-style{
@@ -11,4 +17,8 @@ body{
     font-family:'Baloo Chettan';
     font-size: 2rem;
     color: white;
+}
+.logo-header{
+    display: block;
+    margin-bottom: 1%;
 }
