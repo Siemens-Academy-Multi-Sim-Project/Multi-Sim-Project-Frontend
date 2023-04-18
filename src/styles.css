@@ -8,6 +8,7 @@ body{
 *{
     margin: 0;
     padding: 0;
+    overflow: hidden;
 }
 
 .profiling-style{
@@ -20,5 +21,4 @@ body{
 }
 .logo-header{
     display: block;
-    margin-bottom: 1%;
 }

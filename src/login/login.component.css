@@ -54,16 +54,17 @@
     align-items: center;
     justify-content: flex-start;
     flex-direction: column;
+    padding-top: 5%;
 }
 .forgot-password{
     text-decoration: none;
     color: black;
     font-family: 'inter';
-    font-size: 60%;
+    font-size: 75%;
 }
 .signup-note{
     font-family: 'inter';
-    font-size: 60%;
+    font-size: 75%;
 }
 .signup-note-link{
     color: rgb(2, 18, 41);
