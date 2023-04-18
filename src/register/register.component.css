@@ -1,4 +1,4 @@
-.login-container{
+.signup-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,15 +9,15 @@
 .user-icon{
     background-color: rgba(48, 92, 124, 1);
     border-radius: 50%;
-    width: 25%;
-    height: 15%;
+    width: 18%;
+    height: 13%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    top: 11px;
+    top: 26px;
     margin: auto;
-    padding: 7%;
+    padding: 3%;
 }
 .user{
     font-size: 2rem;
@@ -29,12 +29,12 @@
     margin: auto;
     padding: 12% 0 0 0;
 }
-.login-submit-button{
+.signup-submit-button{
     background-color: rgba(48, 92, 124, 1);
     width: 100%;
     font-family: 'inter';
 }
-.login-footer{
+.signup-footer{
     margin: auto;
     width: 100%;
     height: 100%;
@@ -44,16 +44,10 @@
     flex-direction: column;
     padding-top: 5%;
 }
-.forgot-password{
-    text-decoration: none;
-    color: black;
+.login-note{
     font-family: 'inter';
     font-size: 75%;
 }
-.signup-note{
-    font-family: 'inter';
-    font-size: 75%;
-}
-.signup-note-link{
+.login-note-link{
     color: rgb(2, 18, 41);
 }
