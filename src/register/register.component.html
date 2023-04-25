@@ -22,7 +22,10 @@
           </div>
           <div class="mb-3">
             <input [class.is-invalid]="registerationForm.get('email')?.invalid && registerationForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="email" placeholder="Email Address" name="email" >
-            <small class="text-danger" [class.d-none]="registerationForm.get('email')?.valid || registerationForm.get('email')?.untouched">Email is required</small>
+            <div *ngIf="registerationForm.get('email')?.invalid && registerationForm.get('email')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('email')?.errors?.['required']">Email is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('email')?.errors?.['pattern']">Please enter a valid email address</small>
+            </div>
           </div>
           <div class="mb-3">
             <input [class.is-invalid]="registerationForm.get('password')?.invalid && registerationForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" >

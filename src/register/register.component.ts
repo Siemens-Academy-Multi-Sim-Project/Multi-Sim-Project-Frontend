@@ -13,7 +13,7 @@ export class RegisterComponent {
   registerationForm = this.fb.group({
     firstName:['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
     lastName: ['',[Validators.required,Validators.pattern('[a-zA-Z ]*')]],
-    email: ['',Validators.required],
+    email: ['',[Validators.required,Validators.pattern('^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$')]],
     password: ['',Validators.required],
     confirmPassword: ['',Validators.required]
   });
