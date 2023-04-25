@@ -5,21 +5,32 @@
       </div>
       <h4 class="form-name">Sign Up</h4>
       <div class="card-body">
-        <form>
+        <form [formGroup]="registerationForm">
           <div class="mb-3 mt-3">
-            <input type="text" class="form-control" id="fname" placeholder="First Name" name="fname" required>
+            <input  formControlName="firstName" type="text" class="form-control" id="fname" placeholder="First Name" name="fname" [class.is-invalid]="registerationForm.get('firstName')?.invalid && registerationForm.get('firstName')?.touched">
+            <div *ngIf="registerationForm.get('firstName')?.invalid && registerationForm.get('firstName')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('firstName')?.errors?.['required']">First name is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('firstName')?.errors?.['pattern']">Upper and lower case letters are only allowed</small>
+            </div>
           </div>
           <div class="mb-3 mt-3">
-            <input type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" required>
+            <input [class.is-invalid]="registerationForm.get('lastName')?.invalid && registerationForm.get('lastName')?.touched" formControlName="lastName" type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" >
+            <div *ngIf="registerationForm.get('lastName')?.invalid && registerationForm.get('lastName')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('lastName')?.errors?.['required']">Last name is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('lastName')?.errors?.['pattern']">Upper and lower case letters are only allowed</small>
+            </div>
           </div>
           <div class="mb-3">
-            <input type="email" class="form-control" id="email" placeholder="Email Address" name="email" required>
+            <input [class.is-invalid]="registerationForm.get('email')?.invalid && registerationForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="email" placeholder="Email Address" name="email" >
+            <small class="text-danger" [class.d-none]="registerationForm.get('email')?.valid || registerationForm.get('email')?.untouched">Email is required</small>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" required>
+            <input [class.is-invalid]="registerationForm.get('password')?.invalid && registerationForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" >
+            <small class="text-danger" [class.d-none]="registerationForm.get('password')?.valid || registerationForm.get('password')?.untouched">Password is required</small>
           </div>
           <div class="mb-3">
-            <input type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="pswd" required>
+            <input [class.is-invalid]="registerationForm.get('confirmPassword')?.invalid && registerationForm.get('confirmPassword')?.touched" formControlName="confirmPassword" type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="pswd" >
+            <small class="text-danger" [class.d-none]="registerationForm.get('confirmPassword')?.valid || registerationForm.get('confirmPassword')?.untouched">Please, confirm your password</small>
           </div>
           <button type="submit" class="btn btn-primary signup-submit-button">Sign Up</button>
         </form>
