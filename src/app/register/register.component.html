@@ -38,13 +38,13 @@
             <input [class.is-invalid]="(registerationForm.get('confirmPassword')?.invalid && registerationForm.get('confirmPassword')?.touched)||(registerationForm.errors?.['misMatch'])" formControlName="confirmPassword" type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="pswd" >
             <div *ngIf="(registerationForm.get('confirmPassword')?.invalid && registerationForm.get('confirmPassword')?.touched)||(registerationForm.errors?.['misMatch'])">
               <small class="text-danger" *ngIf="registerationForm.get('confirmPassword')?.errors?.['required']">Please, confirm your password</small>
-              <small class="text-danger" *ngIf="registerationForm.errors?.['misMatch']">Passwords do not match</small>
+              <small class="text-danger" *ngIf="registerationForm.errors?.['misMatch'] && registerationForm.get('confirmPassword')?.valid">Passwords do not match</small>
             </div>
           </div>
           <button type="submit" class="btn btn-primary signup-submit-button">Sign Up</button>
         </form>
         <div class="signup-footer">
-              <p class="login-note">Already have an account? <a href="#" class="login-note-link">Log In</a></p>
+              <p class="login-note">Already have an account? <a routerLink="/login" class="login-note-link">Log In</a></p>
             </div>
         </div>
       </div>
