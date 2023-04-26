@@ -1,0 +1,52 @@
+<div class="signup-container">
+    <div class="card" style="width: 400px;" >
+      <div class="user-icon">
+        <fa-icon class="user" [icon]="faUser"></fa-icon>
+      </div>
+      <h4 class="form-name">Sign Up</h4>
+      <div class="card-body">
+        <form [formGroup]="registerationForm">
+          <div class="mb-3 mt-3">
+            <input  formControlName="firstName" type="text" class="form-control" id="fname" placeholder="First Name" name="fname" [class.is-invalid]="registerationForm.get('firstName')?.invalid && registerationForm.get('firstName')?.touched">
+            <div *ngIf="registerationForm.get('firstName')?.invalid && registerationForm.get('firstName')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('firstName')?.errors?.['required']">First name is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('firstName')?.errors?.['pattern']">Upper and lower case letters are only allowed</small>
+            </div>
+          </div>
+          <div class="mb-3 mt-3">
+            <input [class.is-invalid]="registerationForm.get('lastName')?.invalid && registerationForm.get('lastName')?.touched" formControlName="lastName" type="text" class="form-control" id="lname" placeholder="Last Name" name="lname" >
+            <div *ngIf="registerationForm.get('lastName')?.invalid && registerationForm.get('lastName')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('lastName')?.errors?.['required']">Last name is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('lastName')?.errors?.['pattern']">Upper and lower case letters are only allowed</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input [class.is-invalid]="registerationForm.get('email')?.invalid && registerationForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="email" placeholder="Email Address" name="email" >
+            <div *ngIf="registerationForm.get('email')?.invalid && registerationForm.get('email')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('email')?.errors?.['required']">Email is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('email')?.errors?.['pattern']">Please enter a valid email address</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input [class.is-invalid]="registerationForm.get('password')?.invalid && registerationForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" >
+            <div *ngIf="registerationForm.get('password')?.invalid && registerationForm.get('password')?.touched">
+              <small class="text-danger" *ngIf="registerationForm.get('password')?.errors?.['required']">Password is required</small>
+              <small class="text-danger" *ngIf="registerationForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input [class.is-invalid]="(registerationForm.get('confirmPassword')?.invalid && registerationForm.get('confirmPassword')?.touched)||(registerationForm.errors?.['misMatch'])" formControlName="confirmPassword" type="password" class="form-control" id="pwd" placeholder="Confirm Password" name="pswd" >
+            <div *ngIf="(registerationForm.get('confirmPassword')?.invalid && registerationForm.get('confirmPassword')?.touched)||(registerationForm.errors?.['misMatch'])">
+              <small class="text-danger" *ngIf="registerationForm.get('confirmPassword')?.errors?.['required']">Please, confirm your password</small>
+              <small class="text-danger" *ngIf="registerationForm.errors?.['misMatch'] && registerationForm.get('confirmPassword')?.valid">Passwords do not match</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary signup-submit-button">Sign Up</button>
+        </form>
+        <div class="signup-footer">
+              <p class="login-note">Already have an account? <a routerLink="/login" class="login-note-link">Log In</a></p>
+            </div>
+        </div>
+      </div>
+    
+</div>

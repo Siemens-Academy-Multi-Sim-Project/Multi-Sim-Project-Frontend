@@ -1,0 +1,26 @@
+.Container_404{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+.warning{
+    text-align: center;
+    font-weight: bolder;
+    font-size: 4rem;
+    color: white;
+    margin-bottom: 4%;
+}
+
+.link_404{
+    background-color: white;
+    text-decoration: none;
+    border-radius: 2%;
+    width: 12%;
+    height: 6%;
+    text-align: center;
+    padding-top: 0.5%;
+    font-weight: bold;
+    
+}
