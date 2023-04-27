@@ -1,0 +1,20 @@
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  width: inherit;
+  background-color: #0b5394;
+  border-radius: 15px;
+}
+.content{
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.bolded{
+  font-weight: bold;
+}
+
