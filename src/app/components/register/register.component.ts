@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {FormBuilder,Validators} from '@angular/forms';
-import { passwordValidator } from '../shared/password.validator';
+import { passwordValidator } from '../../shared/password.validator';
 
 
 @Component({
@@ -19,5 +19,5 @@ export class RegisterComponent {
     password: ['',[Validators.required,Validators.minLength(8)]],
     confirmPassword: ['',Validators.required]
   },{validator:passwordValidator});
-  
+
 }
