@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {SingleAttribute} from "../../models/singleAttribute";
-import {MultiAttribute} from "../../models/multiAttribute";
-import {DualAttribute} from "../../models/dual-attribute";
+import {SingleAttribute} from "../../models/session-overview-models/singleAttribute";
+import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
+import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
 
 @Component({
   selector: 'app-session-overview',

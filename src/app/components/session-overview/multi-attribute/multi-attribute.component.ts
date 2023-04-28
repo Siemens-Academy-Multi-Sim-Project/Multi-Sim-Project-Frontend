@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {MultiAttribute} from "../../../models/multiAttribute";
+import {MultiAttribute} from "../../../models/session-overview-models/multiAttribute";
 
 @Component({
   selector: 'app-multi-attribute',

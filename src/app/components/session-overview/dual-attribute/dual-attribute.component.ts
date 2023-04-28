@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {DualAttribute} from "../../../models/dual-attribute";
+import {DualAttribute} from "../../../models/session-overview-models/dual-attribute";
 
 @Component({
   selector: 'app-dual-attribute',

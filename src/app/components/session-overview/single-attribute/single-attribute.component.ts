@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {SingleAttribute} from "../../../models/singleAttribute";
+import {SingleAttribute} from "../../../models/session-overview-models/singleAttribute";
 
 @Component({
   selector: 'app-single-attribute',
