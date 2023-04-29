@@ -4,6 +4,7 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {SessionOverviewComponent} from './components/session-overview/session-overview.component';
+import { OverviewBarChartComponent } from './overview-bar-chart/overview-bar-chart.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},

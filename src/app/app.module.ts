@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -26,7 +27,8 @@ import { OverviewBarChartComponent } from './overview-bar-chart/overview-bar-cha
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
