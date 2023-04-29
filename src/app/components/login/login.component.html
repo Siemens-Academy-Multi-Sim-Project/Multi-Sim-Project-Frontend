@@ -1,0 +1,32 @@
+<div class="login-container">
+    <div class="card" style="width: 400px;" >
+      <div class="user-icon">
+        <fa-icon class="user" [icon]="faUser"></fa-icon>
+      </div>
+      <h4 class="form-name">Log In</h4>
+      <div class="card-body">
+        <form [formGroup]="loginForm">
+          <div class="mb-3 mt-3">
+            <input [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" formControlName="email" type="email" class="form-control" id="email" placeholder="Email Address" name="email" >
+            <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              <small class="text-danger" *ngIf="loginForm.get('email')?.errors?.['required']">Email is required</small>
+              <small class="text-danger" *ngIf="loginForm.get('email')?.errors?.['pattern']">Please enter a valid email address</small>
+            </div>
+          </div>
+          <div class="mb-3">
+            <input [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" formControlName="password" type="password" class="form-control" id="pwd" placeholder="Password" name="pswd" >
+            <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <small class="text-danger" *ngIf="loginForm.get('password')?.errors?.['required']">Password is required</small>
+              <small class="text-danger" *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary login-submit-button">Log In</button>
+        </form>
+        <div class="login-footer">
+              <p class="signup-note">Don’t have an account? <a routerLink="/signUp" class="signup-note-link">Sign up</a></p>
+              <a href="#" class="forgot-password">Forgot your password?</a>
+            </div>
+        </div>
+      </div>
+    
+</div>
