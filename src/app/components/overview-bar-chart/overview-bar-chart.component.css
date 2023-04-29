@@ -1,7 +1,4 @@
-#chart{
-    border: 1px dotted red;
-}
-
 .container {
+    margin-top: 10px;
     display: flexbox;
 }
