@@ -10,8 +10,9 @@ import { SessionOverviewComponent } from './components/session-overview/session-
 import { SingleAttributeComponent } from './components/session-overview/single-attribute/single-attribute.component';
 import { MultiAttributeComponent } from './components/session-overview/multi-attribute/multi-attribute.component';
 import { DualAttributeComponent } from './components/session-overview/dual-attribute/dual-attribute.component';
+import { OverviewBarChartComponent } from './components/overview-bar-chart/overview-bar-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
-import { OverviewBarChartComponent } from './overview-bar-chart/overview-bar-chart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { OverviewBarChartComponent } from './overview-bar-chart/overview-bar-cha
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

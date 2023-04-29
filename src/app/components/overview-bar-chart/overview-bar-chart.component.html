@@ -1,0 +1,12 @@
+<div class="container" id="chart">
+    <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [title]="chartOptions.title"
+    ></apx-chart>
+</div>
+
+<select [(ngModel)]="selectedChoice" (ngModelChange)="onGraphViewChanged(selectedChoice)">
+    <option *ngFor="let option of choices">{{option}}</option>
+</select> 
