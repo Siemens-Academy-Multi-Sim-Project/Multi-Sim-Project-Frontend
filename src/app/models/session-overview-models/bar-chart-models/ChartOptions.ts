@@ -14,9 +14,15 @@ export class ChartOptions {
     static createChartOptions(title: string, xValues: number[], yValues: number[]): ChartOptions {
         return {
             series: [{data: yValues}],
-            chart: {type: "bar"},
-            title: {text: title},
-            xaxis: {categories: xValues}
+            chart: {type: "bar", foreColor:"#FFFFFF"},
+            title: {text: title, style:{color: "#FFFFFF"}},
+            xaxis: {
+                categories: xValues,
+                labels: {
+                    style:{colors: "#FFFFFF"}
+                }
+            }
+
         };
     }
 }

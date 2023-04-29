@@ -1,12 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import * as ApexCharts from 'apexcharts';
-import {
-    ChartComponent,
-    ApexAxisChartSeries,
-    ApexChart,
-    ApexXAxis,
-    ApexTitleSubtitle
-} from "ng-apexcharts";
+import { Component, ViewChild } from '@angular/core';
+import {ChartComponent} from "ng-apexcharts";
 import { ChartOptions} from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
 
 @Component({
