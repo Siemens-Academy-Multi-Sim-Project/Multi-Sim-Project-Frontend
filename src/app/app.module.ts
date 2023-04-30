@@ -9,6 +9,8 @@ import { SessionOverviewComponent } from './components/session-overview/session-
 import { SingleAttributeComponent } from './components/session-overview/single-attribute/single-attribute.component';
 import { MultiAttributeComponent } from './components/session-overview/multi-attribute/multi-attribute.component';
 import { DualAttributeComponent } from './components/session-overview/dual-attribute/dual-attribute.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -19,12 +21,14 @@ import { DualAttributeComponent } from './components/session-overview/dual-attri
     SingleAttributeComponent,
     MultiAttributeComponent,
     DualAttributeComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
