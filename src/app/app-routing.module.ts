@@ -4,12 +4,14 @@ import {LoginComponent} from './components/login/login.component';
 import {RegisterComponent} from './components/register/register.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {SessionOverviewComponent} from './components/session-overview/session-overview.component';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: RegisterComponent},
   {path: 'session-overview', component: SessionOverviewComponent},
+  {path: "upload-file", component: UploadFileComponent},
   {path: "**", component: PageNotFoundComponent},
 ];
 
@@ -20,4 +22,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const routingComponents = [LoginComponent, RegisterComponent, PageNotFoundComponent]
+export const routingComponents = [LoginComponent, RegisterComponent, PageNotFoundComponent ]
