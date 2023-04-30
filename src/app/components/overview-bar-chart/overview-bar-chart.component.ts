@@ -11,46 +11,38 @@ export class OverviewBarChartComponent {
 
     @ViewChild("chart", { static: false }) chart!: ChartComponent;
     public chartOptions!: ChartOptions;
+    testData = [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 5, 5, 10, 10, 20, 20, 150, 150, 156, 156]
+    graphingChoices = ["Vsim Time", "Vopt Time", "Vsim Memory"]
+    selectedGraphingChoice: string = this.graphingChoices[0]
+
+    binStrategy = ["Group", "Single"]
+    selectedBinStrategy: string = this.binStrategy[0]
 
     constructor() {
-        let x = [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 5, 5, 10, 10, 20, 20, 150, 150, 20, 20, 150, 150, 156, 20, 150, 150, 156]
-        console.log();
-        
-        let data = this.dynamicBin(x)
-        let data2 = this.dynamicBin2(data)
-        this.chartOptions = ChartOptions.createChartOptions(this.choices[0], data2[0], data2[1])
-        console.log(
-            this.dynamicBin(x)
-        );
-        
+        this.group()
     }
 
-    onGraphViewChanged(selection: string): void {
-        switch (selection) {
-            case this.choices[0]:
-                this.chartOptions = ChartOptions.createChartOptions(this.choices[0], this.testcat1, this.testdata1)
+    group(){
+        let data = this.dynamicBin(this.testData)
+        let data2 = this.dynamicBin2(data)
+        this.chartOptions = ChartOptions.createChartOptions(this.graphingChoices[0], data2[0], data2[1])
+    }
+
+    // TODO
+    onGraphingDataChanged(selection: string): void {}
+
+    onBinStrategyChanged(selection: string){
+        switch(selection){
+            case this.binStrategy[0]:
+                this.group();
                 break;
-            case this.choices[1]:
-                this.chartOptions = ChartOptions.createChartOptions(this.choices[1], this.testcat2, this.testdata2)
-                break;
-            case this.choices[2]:
-                this.chartOptions = ChartOptions.createChartOptions(this.choices[2], this.testcat3, this.testdata3)
-                break;
+            case this.binStrategy[1]:
+                let single = this.makeHistogram(this.testData);
+                this.chartOptions = ChartOptions.createChartOptions(this.graphingChoices[0], single[0], single[1])
         }
     }
 
 
-    testdata1 = [30, 40, 35, 50, 49, 60, 70, 91, 125]
-    testcat1 = [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
-
-    testdata2 = [30, 40, 35, 50]
-    testcat2 = [1991, 1992, 1993, 1993]
-
-    testdata3 = [30, 40, 35, 50, 91, 125]
-    testcat3 = [1991, 1992, 1993, 1994, 1995, 1996]
-    choices = ["Vsim Time", "Vopt Time", "Vsim Memory"]
-
-    selectedChoice: string = this.choices[0]
 
 
     // Sort the list of numbers in ascending order.

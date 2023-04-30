@@ -1,9 +1,25 @@
-<select class="form-select" [(ngModel)]="selectedChoice" (ngModelChange)="onGraphViewChanged(selectedChoice)">
-    <option *ngFor="let option of choices">{{option}}</option>
-</select> 
+<div class="parent">
+    <div id="title">Charting Data</div>
+    <select 
+        class="form-select form-select-sm" 
+        [(ngModel)]="selectedGraphingChoice" 
+        (ngModelChange)="onGraphingDataChanged(selectedGraphingChoice)" >
+        <option *ngFor="let option of graphingChoices">{{option}}</option>
+    </select>
+    <div id="title">Bin Strategy</div>
+    <select 
+        class="form-select form-select-sm" 
+        [(ngModel)]="selectedBinStrategy" 
+        (ngModelChange)="onBinStrategyChanged(selectedBinStrategy)" >
+        <option *ngFor="let option of binStrategy">{{option}}</option>
+    </select>
+</div>
+
+
+
+
 <div class="container" id="chart">
     <apx-chart
-        
         [series]="chartOptions.series"
         [chart]="chartOptions.chart"
         [xaxis]="chartOptions.xaxis"

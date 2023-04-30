@@ -2,3 +2,15 @@
     margin-top: 10px;
     display: flexbox;
 }
+
+#title {
+    color: white;
+}
+
+.parent {
+    display: grid;
+    grid-template-columns: repeat(2, 0.5fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
