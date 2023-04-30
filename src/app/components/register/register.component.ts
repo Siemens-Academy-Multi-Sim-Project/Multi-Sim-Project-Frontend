@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {faUser} from '@fortawesome/free-solid-svg-icons'
 import {FormBuilder,Validators} from '@angular/forms';
-import { passwordValidator } from '../../shared/password.validator';
+import { passwordValidator } from '../../shared/validators/password.validator';
 
 
 @Component({
