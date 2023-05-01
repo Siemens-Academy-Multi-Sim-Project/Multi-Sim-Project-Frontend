@@ -1,10 +1,10 @@
 import { HttpClient, HttpEventType } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
 @Injectable({
   providedIn: 'root'
 })
-export class UploadService {
+export class UploadFileService {
+
 
   constructor(public http:HttpClient ) { }
   total:any;
@@ -12,7 +12,7 @@ export class UploadService {
   startUpload: boolean = false;
   progress:any;
 
-  UploadCSV( formData:FormData   ){
+  UploadCSV( formData:FormData ){
     this.http.post('http://127.0.0.1:8000/public/UF/',formData,{
       reportProgress:true,
       observe:'events'
@@ -31,5 +31,4 @@ export class UploadService {
       })
 
   }
-
 }

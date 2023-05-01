@@ -1,7 +1,7 @@
-import { UploadService } from './../../upload.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { HttpClient, HttpEventType } from '@angular/common/http';
+import { UploadFileService } from 'src/app/Services/upload-file.service';
 
 @Component({
   selector: 'app-upload-file',
@@ -17,7 +17,7 @@ export class UploadFileComponent implements OnInit{
   startUpload: boolean = false;
   progress:any;
 
-  constructor( public  uploadObject : UploadService,public  http:HttpClient){}
+  constructor( public  uploadObject : UploadFileService,public  http:HttpClient){}
   ngOnInit() {
 
       }
@@ -31,8 +31,8 @@ export class UploadFileComponent implements OnInit{
   formData.set('file',this.file);//setting  the dile
 
 
-  // this.uploadObject.UploadCSV(formData);
-  this.http.post('http://localhost:8080/UploadCSV',formData,{
+   this.uploadObject.UploadCSV(formData);
+  /*this.http.post('http://localhost:8080/UploadCSV',formData,{
     reportProgress:true,
     observe:'events'
   }).subscribe((event)=>{
@@ -47,7 +47,7 @@ export class UploadFileComponent implements OnInit{
       this.uploaded=true;
       this.startUpload=false;
     }
-    })
+    })*/
 
 }
 }
