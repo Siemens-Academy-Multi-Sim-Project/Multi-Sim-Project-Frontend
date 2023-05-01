@@ -11,7 +11,9 @@ export class OverviewBarChartComponent {
 
     @ViewChild("chart", { static: false }) chart!: ChartComponent;
     public chartOptions!: ChartOptions;
-    testData = [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 5, 5, 10, 10, 20, 20, 150, 150, 156, 156]
+    vsimTimeTestData = [1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 5, 5, 10, 10, 20, 20, 150, 150, 156, 156]
+    voptTimeTestData = [40, 203, 12, 30412,203, 12, 3255, 2034,3255, 2034, 600, 414]
+    vsimMemoryTestData = [324, 2313, 20, 23, 41, 23, 41, 23, 41, 281, 236, 281, 236]
     graphingChoices = ["Vsim Time", "Vopt Time", "Vsim Memory"]
     selectedGraphingChoice: string = this.graphingChoices[0]
 
@@ -19,26 +21,47 @@ export class OverviewBarChartComponent {
     selectedBinStrategy: string = this.binStrategy[0]
 
     constructor() {
-        this.group()
+        this.testingGrouping(
+            this.getCurrentlySelectedTestData()
+        )
     }
 
-    group(){
-        let data = this.dynamicBin(this.testData)
+    getCurrentlySelectedTestData(): number[]{
+        switch (this.selectedGraphingChoice) {
+            case this.graphingChoices[0]:
+                return this.vsimTimeTestData
+                break;
+            case this.graphingChoices[1]:
+                return this.voptTimeTestData
+                break;
+            default:
+                return this.vsimMemoryTestData
+                break;
+        }
+    }
+
+    testingGrouping(input: number[]){
+        let data = this.dynamicBin(input)
         let data2 = this.dynamicBin2(data)
-        this.chartOptions = ChartOptions.createChartOptions(this.graphingChoices[0], data2[0], data2[1])
+        this.chartOptions = ChartOptions.createChartOptions(this.selectedGraphingChoice, data2[0], data2[1])
     }
 
     // TODO
-    onGraphingDataChanged(selection: string): void {}
+    onGraphingDataChanged(): void {
+        let currentData = this.getCurrentlySelectedTestData()
+        let currentStrategy = this.selectedBinStrategy;
+        console.log(this.selectedGraphingChoice);
 
-    onBinStrategyChanged(selection: string){
-        switch(selection){
+        switch(currentStrategy){
             case this.binStrategy[0]:
-                this.group();
+                this.testingGrouping(
+                   currentData
+                );
                 break;
             case this.binStrategy[1]:
-                let single = this.makeHistogram(this.testData);
-                this.chartOptions = ChartOptions.createChartOptions(this.graphingChoices[0], single[0], single[1])
+                let single = this.makeHistogram(currentData);
+                this.chartOptions = ChartOptions.createChartOptions(this.selectedGraphingChoice, single[0], single[1])
+                break;
         }
     }
 

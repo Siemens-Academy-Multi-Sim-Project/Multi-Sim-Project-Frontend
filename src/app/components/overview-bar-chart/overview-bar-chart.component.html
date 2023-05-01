@@ -3,14 +3,14 @@
     <select 
         class="form-select form-select-sm" 
         [(ngModel)]="selectedGraphingChoice" 
-        (ngModelChange)="onGraphingDataChanged(selectedGraphingChoice)" >
+        (ngModelChange)="onGraphingDataChanged()" >
         <option *ngFor="let option of graphingChoices">{{option}}</option>
     </select>
     <div id="title">Bin Strategy</div>
     <select 
         class="form-select form-select-sm" 
         [(ngModel)]="selectedBinStrategy" 
-        (ngModelChange)="onBinStrategyChanged(selectedBinStrategy)" >
+        (ngModelChange)="onGraphingDataChanged()" >
         <option *ngFor="let option of binStrategy">{{option}}</option>
     </select>
 </div>
