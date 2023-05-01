@@ -12,6 +12,8 @@ import { MultiAttributeComponent } from './components/session-overview/multi-att
 import { DualAttributeComponent } from './components/session-overview/dual-attribute/dual-attribute.component';
 import { OverviewBarChartComponent } from './components/overview-bar-chart/overview-bar-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -23,6 +25,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     SingleAttributeComponent,
     MultiAttributeComponent,
     DualAttributeComponent,
+    UploadFileComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +33,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     FontAwesomeModule,
     ReactiveFormsModule,
     FormsModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
