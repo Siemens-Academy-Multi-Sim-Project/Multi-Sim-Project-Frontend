@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {SingleAttribute} from "../../models/session-overview-models/singleAttribute";
 import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
 import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
+import {UsageProfileTableComponent} from "../usage-profile-table/usage-profile-table.component";
 
 @Component({
   selector: 'app-session-overview',
