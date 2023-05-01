@@ -22,21 +22,15 @@ function makeSimpleHistogram(data: number[]): [string[], number[]] {
     ];
 }
 
-export function t(data: number[], strategy: GroupingStrategy = "Tight Grouping"): [string[], number[]] {
+export function groupData(data: number[], strategy: GroupingStrategy = "Tight Grouping"): [string[], number[]] {
+    let sortedData = [...data].sort(((a, b) => a-b))
+
     if (strategy === "No Grouping") {
-        return makeSimpleHistogram(data)
+        return makeSimpleHistogram(sortedData)
     }
 
-    let sum = 0;
-    for (let i = 1; i < data.length; i++) {
-        sum += data[i];
-    }
-    let avg = Math.ceil(sum / data.length);
-
-    data = data.sort((a, b) => a - b);
-
+    let avg = averageOf(sortedData);
     let threshold = Math.ceil(avg * getThreshold(strategy))
-    console.log(threshold);
 
     let rangeStart = 0;
     let rangeEnd = threshold;
@@ -45,26 +39,26 @@ export function t(data: number[], strategy: GroupingStrategy = "Tight Grouping")
     let points: number[][] = [[]]
     let labels: string[] = []
 
-    for (let i = 0; i < data.length; i++) {
-        if (data[i] > rangeStart && data[i] < rangeEnd) {
-            points[currentBin].push(data[i]);
+    for (let i = 0; i < sortedData.length; i++) {
+        if (sortedData[i] > rangeStart && sortedData[i] < rangeEnd) {
+            points[currentBin].push(sortedData[i]);
         } else {
             currentBin++;
             points.push([])
-            while (data[i] > rangeEnd) {
+            while (sortedData[i] > rangeEnd) {
                 rangeStart = rangeEnd
                 rangeEnd += threshold;
             }
-            points[currentBin].push(data[i]);
+            points[currentBin].push(sortedData[i]);
         }
     }
 
     for (let i = 0; i < points.length; i++) {
         if (i == 0) {
-            let label = " < " + Math.max(...points[i]);
+            let label = " < " + (Math.max(...points[i]) + 1);
             labels.push(label)
         } else if (i == points.length - 1) {
-            let label = " > " + Math.min(...points[i]);
+            let label = " > " + (Math.min(...points[i]) - 1);
             labels.push(label);
         } else {
             let set = new Set(points[i])
@@ -83,4 +77,13 @@ export function t(data: number[], strategy: GroupingStrategy = "Tight Grouping")
         labels,
         points.map((bin) => bin.length)
     ]
+}
+
+function averageOf(data: number[]) {
+    let sum = 0;
+    for (let i = 1; i < data.length; i++) {
+        sum += data[i];
+    }
+    let avg = Math.ceil(sum / data.length);
+    return avg;
 }
