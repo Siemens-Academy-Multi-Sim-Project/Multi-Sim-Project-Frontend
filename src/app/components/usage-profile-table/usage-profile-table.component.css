@@ -1,0 +1,19 @@
+.usage-profile{
+  margin-bottom: 10px;
+  width: 100%;
+  color: white;
+  overflow: auto;
+}
+.entry{
+  color: hotpink;
+}
+.entry:hover{
+  color: white;
+}
+
+.col-entry{
+  color: red;
+}
+.col-entry:hover{
+  color: white;
+}

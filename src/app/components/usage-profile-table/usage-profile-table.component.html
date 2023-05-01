@@ -1,0 +1,11 @@
+<table mat-table [dataSource]="dataSource" class="usage-profile">
+  <!--  define columns by loop by col def-->
+  <ng-container *ngFor="let column of col_defs" matColumnDef="{{column.displayName}}">
+    <th mat-header-cell *matHeaderCellDef> {{column.displayName}} </th>
+    <td mat-cell *matCellDef="let element" class="col-entry"> {{element[column.property]}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="entry"></tr>
+
+</table>
