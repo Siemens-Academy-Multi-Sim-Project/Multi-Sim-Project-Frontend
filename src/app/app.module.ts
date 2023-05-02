@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
 import {ReactiveFormsModule} from '@angular/forms';
 
@@ -9,6 +10,8 @@ import { SessionOverviewComponent } from './components/session-overview/session-
 import { SingleAttributeComponent } from './components/session-overview/single-attribute/single-attribute.component';
 import { MultiAttributeComponent } from './components/session-overview/multi-attribute/multi-attribute.component';
 import { DualAttributeComponent } from './components/session-overview/dual-attribute/dual-attribute.component';
+import { OverviewBarChartComponent } from './components/overview-bar-chart/overview-bar-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -16,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
+    OverviewBarChartComponent,
     routingComponents,
     SessionOverviewComponent,
     SingleAttributeComponent,
@@ -28,6 +32,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    FormsModule,
+    NgApexchartsModule,
     HttpClientModule,
   ],
   providers: [],
