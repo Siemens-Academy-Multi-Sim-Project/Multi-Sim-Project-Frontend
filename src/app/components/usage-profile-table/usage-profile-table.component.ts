@@ -95,14 +95,14 @@ export class UsageProfileTableComponent {
       language: "test",
       du_count: 1,
       vopt_time: "test",
-      vsim_time: "test",
+      vsim_time: "tnwnwnwnwnwnwnwnwnwnwnwnwwnwnw",
       vopt_memory: "test",
       vsim_memory: "test",
       pref_samples: 1,
       randomize_calls: 1,
       date_of_collection: "test",
       vopt_cmd: "test",
-      vsim_cmd: "teste"
+      vsim_cmd: "bawudguipagdagdwyogdayuogwugodaougyuwogduygdouwagdayodg"
     }
   ];
 

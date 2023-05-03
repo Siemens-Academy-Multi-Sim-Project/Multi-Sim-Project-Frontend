@@ -1,19 +1,35 @@
-.usage-profile{
+.usage-profile {
   margin-bottom: 10px;
   width: 100%;
   color: white;
   overflow: auto;
 }
-.entry{
-  color: hotpink;
-}
-.entry:hover{
-  color: white;
+
+.col-entry {
+  font-size: 12px;
+  max-width: 10px;
+  height: 10px;
+  text-overflow: ellipsis;
 }
 
-.col-entry{
-  color: red;
-}
-.col-entry:hover{
+.col-entry:hover .tooltiptext {
   color: white;
+  visibility: visible;
+}
+
+
+.tooltiptext {
+  visibility: hidden;
+  background-color: black;
+  color: #fff;
+  text-align: start;
+  border-radius: 6px;
+  position: fixed;
+  display: flex;
+  margin-right: -100vmax;
+  flex-direction: row-reverse;
+  max-width: 100px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
