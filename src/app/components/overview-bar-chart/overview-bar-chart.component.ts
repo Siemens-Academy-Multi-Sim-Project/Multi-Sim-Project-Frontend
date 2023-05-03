@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
-import { ChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
+import { BarChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
 import { BarChartService } from 'src/app/services/bar-chart-service/bar-chart.service';
 import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistogram';
 
@@ -13,7 +13,7 @@ import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistog
 export class OverviewBarChartComponent {
 
     @ViewChild("chart", { static: false }) chart!: ChartComponent;
-    public chartOptions!: ChartOptions;
+    public chartOptions!: BarChartOptions;
 
     barChartService!: BarChartService 
 
@@ -51,7 +51,7 @@ export class OverviewBarChartComponent {
         let currentStrategy = this.selectedBinStrategy;
 
         let buckets = groupData(currentData, currentStrategy);
-        this.chartOptions = ChartOptions.createChartOptions(
+        this.chartOptions = BarChartOptions.createBarChartOptions(
             this.selectedGraphingChoice,
             buckets[0],
             buckets[1]

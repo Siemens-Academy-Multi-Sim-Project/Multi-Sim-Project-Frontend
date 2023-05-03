@@ -14,7 +14,7 @@ import { OverviewBarChartComponent } from './components/overview-bar-chart/overv
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HeatMapComponent } from './heat-map/heat-map.component';
+import { HeatMapComponent } from './components/heat-map/heat-map.component';
 
 
 @NgModule({
