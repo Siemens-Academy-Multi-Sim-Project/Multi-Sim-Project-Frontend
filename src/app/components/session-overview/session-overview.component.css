@@ -1,11 +1,14 @@
-.container {
+.dashboard-container {
   display: flex;
   flex-direction: column;
   background-color: #0b5394;
   border-radius: 10px;
   border: 2px solid #fff;
   overflow: auto;
-  scale: inherit;
+  width: fit-content;
+  padding-top: 10px;
+  padding-left: 10px;
+  /* border: 5px dotted green; */
 }
 
 h4 {
@@ -54,6 +57,7 @@ h4 {
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 0px;
   grid-row-gap: 0px;
+  /* border: 5px dotted red; */
 }
 
 #bar-chart {
@@ -66,6 +70,9 @@ h4 {
   align-self: center;
   padding: 20px;
   grid-area: 1 / 2 / 2 / 3;
+  display: inline-block;
+  /* border: 5px dotted orange; */
+  width: fit-content;
 }
 
 #usage-profile {
