@@ -14,6 +14,9 @@ import { OverviewBarChartComponent } from './components/overview-bar-chart/overv
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { HttpClientModule } from '@angular/common/http';
+import {UsageProfileTableComponent} from "./components/usage-profile-table/usage-profile-table.component";
+import {MatTableModule} from '@angular/material/table';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     MultiAttributeComponent,
     DualAttributeComponent,
     UploadFileComponent,
+    UsageProfileTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +39,9 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     NgApexchartsModule,
     HttpClientModule,
+    MatTableModule,
+    MatDividerModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

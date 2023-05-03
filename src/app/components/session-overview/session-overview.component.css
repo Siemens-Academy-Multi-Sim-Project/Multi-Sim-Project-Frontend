@@ -1,24 +1,31 @@
 .container {
   display: flex;
   flex-direction: column;
-  width: inherit;
+  width: 100%;
   background-color: #0b5394;
   border-radius: 10px;
   border: 2px solid #fff;
+  overflow: auto;
+  scale:inherit;
+  position: relative;
 }
-h4{
+
+h4 {
   color: white;
 }
-.content-row{
+
+.content-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 }
-.upper p{
+
+.upper p {
   margin-bottom: 10px;
 }
-.content{
+
+.content {
   display: flex;
   flex-direction: column;
   height: inherit;
@@ -43,10 +50,32 @@ h4{
   align-content: center;
   background-color: #073763;
   margin-top: 10px;
+  overflow: auto;
 }
 
 
-.name{
+.name {
   display: flex;
   flex-direction: row;
+}
+
+.usage-profile {
+  border: 10px solid #073763;
+  border-radius: 20px;
+  width: 100%;
+  display: -ms-flexbox;
+  align-content: center;
+  background-color: #073763;
+  margin-top: 10px;
+  overflow: auto;
+
+}
+
+.usage-profile h6 {
+  color: white;
+}
+
+html, body {
+  height: 100%;
+  overflow: auto;
 }
