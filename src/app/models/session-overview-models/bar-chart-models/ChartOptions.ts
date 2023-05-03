@@ -62,7 +62,7 @@ export class TreeMapChartOptions {
                 show: false,
             },
             chart: {
-                height: 300,
+                height: 387,
                 type: "treemap",
                 width: 700
             },

@@ -1,0 +1,21 @@
+<div *ngIf="selected_item "></div>
+<table mat-table [dataSource]="dataSource" class="usage-profile">
+  <!--  define columns by loop by col def-->
+  <ng-container *ngFor="let column of col_defs" matColumnDef="{{column.displayName}}" class="col-container">
+    <th mat-header-cell *matHeaderCellDef class="table-header"> {{column.displayName}} </th>
+    <td mat-cell *matCellDef="let element" class="col-entry"
+        (click)="setItemData(element[column.property],column.displayName)"> {{element[column.property]}}
+
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="entry"></tr>
+
+</table>
+<hr>
+<div class="item-data" >
+  <p *ngIf="!selected_property">Click on An Entry to View All Its Content</p>
+  <p *ngIf="selected_item">{{selected_property}} : {{selected_item}}</p>
+  <button class="btn btn-danger" *ngIf="selected_item" (click)="resetSelected()">Clear</button>
+</div>

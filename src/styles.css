@@ -1,24 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-    background-image: linear-gradient(to right, rgba(1, 36, 88, 0.81) , rgba(6, 28, 62, 1));
-    height: 100vh;
-    width: 100%;
-    
-}
-*{
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+body {
+  background-image: linear-gradient(to right, rgba(1, 36, 88, 0.81), rgba(6, 28, 62, 1));
+  height: 100vh;
+  width: 100%;
+  overflow: auto;
+  justify-content: center;
 }
 
-.profiling-style{
-    color: rgba(150, 211, 255, 1) !important;
+
+* {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
-.profiling-style,.logo-header{
-    font-family:'Baloo Chettan';
-    font-size: 2rem;
-    color: white;
+
+.profiling-style {
+  color: rgba(150, 211, 255, 1) !important;
 }
-.logo-header{
-    display: block;
+
+.profiling-style, .logo-header {
+  font-family: 'Baloo Chettan';
+  font-size: 2rem;
+  color: white;
 }
+
+.logo-header {
+  display: block;
+}
+
+
