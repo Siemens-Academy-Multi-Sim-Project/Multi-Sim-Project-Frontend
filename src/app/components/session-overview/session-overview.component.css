@@ -6,23 +6,27 @@
   border-radius: 10px;
   border: 2px solid #fff;
 }
-h4{
+
+h4 {
   color: white;
 }
-.content-row{
+
+.content-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
 }
-.upper p{
+
+.upper p {
   margin-bottom: 10px;
 }
-.content{
+
+.content {
   display: flex;
   flex-direction: column;
   height: inherit;
-  margin-left: 20px;
+  margin: 10px;
   border-radius: 15px;
 }
 
@@ -35,18 +39,29 @@ h4{
   flex-basis: 91%;
 }
 
-.upper, .lower {
-  border: 10px solid #073763;
+.dashboard-component {
   border-radius: 20px;
-  width: 100%;
+  background-color: #073763;
+  margin: 10px;
+  padding: 10px;
+}
+
+.upper,
+.lower {
   display: flex;
   align-content: center;
-  background-color: #073763;
-  margin-top: 10px;
+  justify-content: center;
 }
 
 
-.name{
+.name {
   display: flex;
   flex-direction: row;
+}
+
+@media (max-width: 1000px) {
+  .content-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 }
