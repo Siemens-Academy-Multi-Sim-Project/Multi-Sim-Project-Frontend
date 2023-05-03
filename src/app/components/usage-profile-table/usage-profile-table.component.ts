@@ -72,8 +72,8 @@ export class UsageProfileTableComponent {
       randomize_calls: 1,
       date_of_collection: "test",
       vopt_cmd: "test",
-      vsim_cmd: "teste"
-    },{
+      vsim_cmd: " vopt -fprofile +acc -o ethmac_tb_opt -2008 +floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1 "
+    }, {
       file_name: "test",
       design_type: "test",
       methodology: "test",
@@ -88,7 +88,7 @@ export class UsageProfileTableComponent {
       date_of_collection: "test",
       vopt_cmd: "test",
       vsim_cmd: "teste"
-    },{
+    }, {
       file_name: "test",
       design_type: "test",
       methodology: "test",
@@ -127,4 +127,16 @@ export class UsageProfileTableComponent {
   columnsToDisplay: string[] = this.displayedColumns;
   dataSource = new MatTableDataSource<Columns>(this.data);
 
+  selected_item: string = "";
+  selected_property: string = "";
+
+  setItemData(item: string, property: string) {
+    this.selected_item = item;
+    this.selected_property = property;
+  }
+
+  resetSelected() {
+    this.selected_item = "";
+    this.selected_property = "";
+  }
 }

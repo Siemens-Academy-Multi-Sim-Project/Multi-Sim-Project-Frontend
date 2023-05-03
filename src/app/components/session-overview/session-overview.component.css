@@ -60,15 +60,14 @@ h4 {
 }
 
 .usage-profile {
-  display: flex;
-  flex-direction: column;
-  width: inherit;
-  justify-content: center;
+  border: 10px solid #073763;
+  border-radius: 20px;
+  width: 100%;
+  display: -ms-flexbox;
+  align-content: center;
+  background-color: #073763;
   margin-top: 10px;
-  border: 1px white solid;
-  border-radius: 10px;
-  margin-right: 5px;
-  margin-left: 5px;
+  overflow: auto;
 
 }
 

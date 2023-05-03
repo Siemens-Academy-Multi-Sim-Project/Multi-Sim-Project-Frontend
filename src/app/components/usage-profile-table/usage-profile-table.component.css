@@ -5,31 +5,37 @@
   overflow: auto;
 }
 
+.table-header {
+  font-size: 14px;
+  justify-content: space-evenly;
+  overflow: visible;
+  overflow-wrap: normal;
+}
+
 .col-entry {
+  color: silver;
   font-size: 12px;
-  max-width: 10px;
+  max-width: 25px;
   height: 10px;
   text-overflow: ellipsis;
+  white-space: nowrap;
+
 }
 
-.col-entry:hover .tooltiptext {
+.col-entry:hover {
+  transition: 0.5s;
+  color: lawngreen;
+  font-size: 15px;
+}
+
+.item-data {
   color: white;
-  visibility: visible;
+  border-radius: 5px;
+  border: white solid 1px;
+  margin: 5px;
+  padding: 5px;
 }
 
-
-.tooltiptext {
-  visibility: hidden;
-  background-color: black;
-  color: #fff;
-  text-align: start;
-  border-radius: 6px;
-  position: fixed;
-  display: flex;
-  margin-right: -100vmax;
-  flex-direction: row-reverse;
-  max-width: 100px;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  hyphens: auto;
+.btn {
+  align-content: end;
 }

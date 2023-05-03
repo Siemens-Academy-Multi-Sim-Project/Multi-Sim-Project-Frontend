@@ -1,4 +1,3 @@
-
 <div class="container">
   <h4>Session Overview</h4>
   <div class="upper">
@@ -27,21 +26,22 @@
       </div>
 
       <div class="content">
-      <app-dual-attribute [dual_attribute_info]=dualAttribute></app-dual-attribute>
+        <app-dual-attribute [dual_attribute_info]=dualAttribute></app-dual-attribute>
+      </div>
+
+
     </div>
-
-
   </div>
-</div>
 
-<div class="lower">
-  <app-overview-bar-chart></app-overview-bar-chart>
-</div>
+  <div class="lower">
+    <app-overview-bar-chart></app-overview-bar-chart>
+  </div>
+  <div class="usage-profile">
 
-  <div  class="usage-profile">
     <h6>Usage Profile</h6>
     <app-usage-profile-table>
 
     </app-usage-profile-table>
-</div>
+
+  </div>
 </div>
