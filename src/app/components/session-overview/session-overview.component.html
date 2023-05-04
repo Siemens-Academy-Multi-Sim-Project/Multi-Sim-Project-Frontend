@@ -1,6 +1,6 @@
-<div class="container">
+<div class="dashboard-container">
   <h4>Session Overview</h4>
-  <div class="upper">
+  <div class="upper dashboard-component">
     <div class="content-row">
 
       <div class="content">
@@ -18,9 +18,11 @@
       <div class="content">
         <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
       </div>
+
       <div class="content">
         <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
       </div>
+
       <div class="content">
         <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
       </div>
@@ -34,14 +36,15 @@
   </div>
 
   <div class="lower">
-    <app-overview-bar-chart></app-overview-bar-chart>
-  </div>
-  <div class="usage-profile">
 
-    <h6>Usage Profile</h6>
-    <app-usage-profile-table>
+    <app-overview-bar-chart class="dashboard-component" id="bar-chart" />
+    <app-heat-map class="dashboard-component" id="heat-map"/>
+    <div class="dashboard-component" id="usage-profile">
 
-    </app-usage-profile-table>
+      <h6>Usage Profile</h6>
+      <app-usage-profile-table>
+      </app-usage-profile-table>
 
+    </div>
   </div>
 </div>

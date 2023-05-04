@@ -1,13 +1,14 @@
-.container {
+.dashboard-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
   background-color: #0b5394;
   border-radius: 10px;
   border: 2px solid #fff;
   overflow: auto;
-  scale:inherit;
-  position: relative;
+  width: fit-content;
+  padding-top: 10px;
+  padding-left: 10px;
+  /* border: 5px dotted green; */
 }
 
 h4 {
@@ -29,53 +30,85 @@ h4 {
   display: flex;
   flex-direction: column;
   height: inherit;
-  margin-left: 20px;
+  margin: 10px;
   border-radius: 15px;
 }
 
 
-.upper {
-  flex-basis: 25%;
-}
 
-.lower {
-  flex-basis: 91%;
-}
-
-.upper, .lower {
-  border: 10px solid #073763;
+.dashboard-component {
   border-radius: 20px;
-  width: 100%;
-  display: flex;
-  align-content: center;
   background-color: #073763;
-  margin-top: 10px;
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+}
+
+.upper {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
   overflow: auto;
 }
 
+.lower {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  margin-bottom: 10px;
+}
+
+#bar-chart {
+  grid-area: 1 / 1 / 3 / 3;
+  align-self: center;
+  padding: 15px;
+  margin: 10px;
+}
+
+#heat-map {
+  align-self: center;
+  justify-content: center;
+  grid-area: 1 / 3 / 3 / 6;
+  margin: 10px;
+}
+
+#usage-profile {
+  color: white;
+  padding: 15px;
+  grid-area: 3 / 1 / 6 / 6;
+}
 
 .name {
   display: flex;
   flex-direction: row;
 }
 
-.usage-profile {
-  border: 10px solid #073763;
-  border-radius: 20px;
-  width: 100%;
-  display: -ms-flexbox;
-  align-content: center;
-  background-color: #073763;
-  margin-top: 10px;
-  overflow: auto;
+@media (max-width: 1000px) {
+  .content-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 
-}
+  .lower {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+  }
 
-.usage-profile h6 {
-  color: white;
-}
+  #bar-chart {
+    grid-area: 1 / 1 / 2 / 2;
+  }
 
-html, body {
-  height: 100%;
-  overflow: auto;
+  #heat-map {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  #usage-profile {
+    grid-area: 3 / 1 / 4 / 2;
+    overflow-x: scroll;
+  }
 }

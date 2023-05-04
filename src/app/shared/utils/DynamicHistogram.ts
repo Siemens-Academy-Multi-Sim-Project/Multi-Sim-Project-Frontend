@@ -31,6 +31,8 @@ export function groupData(data: number[], strategy: GroupingStrategy = "Tight Gr
 
     let avg = averageOf(sortedData);
     let threshold = Math.ceil(avg * getThreshold(strategy))
+    console.log(threshold);
+    
 
     let rangeStart = 0;
     let rangeEnd = threshold;
