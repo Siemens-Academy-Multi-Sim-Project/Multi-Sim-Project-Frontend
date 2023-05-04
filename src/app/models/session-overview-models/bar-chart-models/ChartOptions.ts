@@ -64,7 +64,7 @@ export class TreeMapChartOptions {
             chart: {
                 height: 387,
                 type: "treemap",
-                width: 700
+                width: "100%"
             },
             title: {
                 text: "DU Performance Heat Map",
