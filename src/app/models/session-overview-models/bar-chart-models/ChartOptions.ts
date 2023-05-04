@@ -19,7 +19,7 @@ export class BarChartOptions {
     static createBarChartOptions(xAxisName: string, xValues: any[], yValues: number[]): BarChartOptions {
         return {
             series: [{ data: yValues, name: "" }],
-            chart: { type: "bar", foreColor: "#FFFFFF", height: 300, width: 500 },
+            chart: { type: "bar", foreColor: "#FFFFFF", height: 300, width: "100%" },
             title: { text: "Distribution", style: { color: "#FFFFFF" } },
             xaxis: {
                 categories: xValues,
