@@ -1,7 +1,8 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {HttpClient, HttpEventType} from '@angular/common/http';
-import {UploadFileService} from 'src/app/services/upload-file-service/upload-file.service';
+import {UploadFilesService} from "../../Services/upload-file-service/upload-files.service";
+
 
 @Component({
   selector: 'app-upload-file',
@@ -14,7 +15,9 @@ export class UploadFileComponent implements OnInit {
   selectedFiles: File[] = [];
   clusterName: String = "";
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private uploadFile: UploadFilesService) {
+
+
   }
 
   ngOnInit() {
@@ -43,6 +46,7 @@ export class UploadFileComponent implements OnInit {
         formData.append('files', file);
       }
       // send formData to server
+      this.uploadFile.handle_files(formData);
     }
     console.log(this.clusterName);
   }
