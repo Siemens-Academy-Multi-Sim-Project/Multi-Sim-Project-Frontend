@@ -55,7 +55,7 @@ export class UsageProfileTableComponent {
       pref_samples: 1,
       randomize_calls: 1,
       date_of_collection: "test",
-      vopt_cmd: "test",
+      vopt_cmd: " vopt -fprofile +acc -o ethmac_tb_opt -2008 +floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1 ",
       vsim_cmd: "teste"
     },
     {

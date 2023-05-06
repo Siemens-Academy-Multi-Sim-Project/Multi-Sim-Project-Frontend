@@ -1,26 +1,24 @@
-
-<div>
-
-  <form [formGroup]="myform">
-    <div>
-      <div>
-        <br><br><br><br><br><br><br><br>
-        <input class="form-control form-control-lg" id="formFileLg" type="file" formControlName="newfile"
-          (change)="getFil1($event)">
-      </div>
-      <br><br>
-      <div style=" text-align:center;">
-      <button class="btn btn-outline-light btn-lg px-5" type="submit"
-        style="   background-color: white ; color:#0057B7" (click)="submitData()">
-        Submit</button></div>
+<div class="container">
+  <h1>File Upload</h1>
+  <form [formGroup]="fileUploadForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="form-group">
+      <label id="clusterName" for="clusterName">Enter Cluster/Session Name</label>
+      <br>
+      <input type="text" formControlName="clusterName" class="clusterName">
+      <br>
+      <br>
+      <label id="file" for="file">Select File(s)</label>
+      <input type="file" multiple formControlName="file" class="form-control-file" (change)="onFileSelect($event)">
     </div>
-    <br><br>
-    <div class="alert alert-success" style="background-color: white;" role="alert" *ngIf="uploaded==true">
-      File Uploaded Succesfully !
+    <div *ngIf="selectedFiles.length > 0" class="selected-files">
+      <h3>Selected Files:</h3>
+      <ul>
+        <li *ngFor="let file of selectedFiles; let i = index">{{ file.name }}
+          <button type="button" class="btn btn-sm btn-danger" (click)="removeSelectedFile(i)">Remove</button>
+        </li>
+      </ul>
+      <button type="button" class="btn btn-danger" (click)="clearSelectedFiles()">Clear Selection</button>
     </div>
-    <div class="alert alert-warning" role="alert" *ngIf="startUpload==true">
-      {{ progress }}
-    </div>
+    <button type="submit" class="btn btn-primary">Upload</button>
   </form>
-
 </div>
