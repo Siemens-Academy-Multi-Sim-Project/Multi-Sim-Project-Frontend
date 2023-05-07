@@ -29,13 +29,13 @@ export class UploadFileComponent implements OnInit {
     });
   }
 
-  generate_cluster() {
+  async generate_cluster() {
     this.clusterName = this.fileUploadForm.get('clusterName')?.value;
     if (this.clusterName == "") {
       alert("Please enter a cluster name");
       return;
     } else {
-      this.uploadFile.create_cluster(this.clusterName).then(() => {
+      await this.uploadFile.create_cluster(this.clusterName).then(() => {
         alert("Cluster created successfully Plz Attach Files");
         this.can_attach = true;
       }).catch((err) => {

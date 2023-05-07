@@ -20,6 +20,14 @@ export class UploadFilesService {
 
   }
 
+  async create_cluster(clusterName: string) {
+    this.httpClient.post('http://localhost:8080/profiling-data/create-clusterr', {"clusterName": clusterName}, {
+      headers: {
+        Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
+      }
+    })
+  }
+
   handle_files(form: FormData) {
     this.httpClient.post('http://localhost:8080/UploadCSV', form, {
       reportProgress: true,
