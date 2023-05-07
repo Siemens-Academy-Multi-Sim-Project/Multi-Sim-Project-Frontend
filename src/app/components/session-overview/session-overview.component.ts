@@ -3,6 +3,8 @@ import {SingleAttribute} from "../../models/session-overview-models/singleAttrib
 import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
 import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
 import {UsageProfileTableComponent} from "../usage-profile-table/usage-profile-table.component";
+import { OverviewService } from 'src/app/services/overview-service/overview.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-session-overview',
@@ -10,6 +12,14 @@ import {UsageProfileTableComponent} from "../usage-profile-table/usage-profile-t
   styleUrls: ['./session-overview.component.css']
 })
 export class SessionOverviewComponent {
+  
+  constructor(public service: OverviewService, private route: ActivatedRoute){
+    console.log(this.route.snapshot.queryParamMap.get('clusterId'));
+    service.getClusterById(1).subscribe((data) => {
+      console.log(data);
+    })
+  }
+
   singleAttributes: SingleAttribute[] = [{count: 420, type: "Test Element"}];
   multiAttributes: MultiAttribute[] = [{
     min: 4,
@@ -21,4 +31,8 @@ export class SessionOverviewComponent {
     measuring_unit: "GB"
   }];
   dualAttribute: DualAttribute  = {calls: 465, samples: 123};
+
+  parseSingleAttrub(ind: number){
+    return this.singleAttributes[ind]
+  }
 }

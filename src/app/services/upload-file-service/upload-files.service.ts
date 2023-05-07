@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class UploadFilesService {
   }
 
   async create_cluster(clusterName: string) {
-    this.httpClient.post('http://localhost:8080/profiling-data/create-clusterr', {"clusterName": clusterName}, {
+    this.httpClient.post(environment.baseUrl + '/profiling-data/create-clusterr', {"clusterName": clusterName}, {
       headers: {
         Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
       }
@@ -29,7 +30,7 @@ export class UploadFilesService {
   }
 
   handle_files(form: FormData) {
-    this.httpClient.post('http://localhost:8080/UploadCSV', form, {
+    this.httpClient.post(environment.baseUrl + '/UploadCSV', form, {
       reportProgress: true,
       observe: 'events',
       headers: {
