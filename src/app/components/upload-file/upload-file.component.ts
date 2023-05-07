@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {HttpClient, HttpEventType} from '@angular/common/http';
-import {UploadFilesService} from "../../Services/upload-file-service/upload-files.service";
+import { UploadFilesService } from 'src/app/services/upload-file-service/upload-files.service';
 
 
 @Component({
