@@ -13,7 +13,9 @@ export class UploadFileComponent implements OnInit {
 
   fileUploadForm!: FormGroup;
   selectedFiles: File[] = [];
-  clusterName: String = "";
+  clusterName: string = "";
+
+  can_attach: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private uploadFile: UploadFilesService) {
 
@@ -27,7 +29,22 @@ export class UploadFileComponent implements OnInit {
     });
   }
 
-  onSubmit() {
+  generate_cluster() {
+    this.clusterName = this.fileUploadForm.get('clusterName')?.value;
+    if (this.clusterName == "") {
+      alert("Please enter a cluster name");
+      return;
+    } else {
+      this.uploadFile.create_cluster(this.clusterName).then(() => {
+        alert("Cluster created successfully Plz Attach Files");
+        this.can_attach = true;
+      }).catch((err) => {
+        alert("Error While Creating CLuster!");
+      });
+    }
+  }
+
+  async send_files() {
     const formData = new FormData();
     const files = this.selectedFiles;
     this.clusterName = this.fileUploadForm.get('clusterName')?.value;
@@ -40,14 +57,17 @@ export class UploadFileComponent implements OnInit {
       return;
     }
     if (files && files.length > 0) {
+      formData.append('ClusterName', this.clusterName);
+      await this.uploadFile.create_cluster(this.clusterName)
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         console.log(file);
         formData.append('file', file);
-        this.uploadFile.handle_files(formData);
+        await this.uploadFile.handle_files(formData);
+        setTimeout(() => {
+        }, 1000);
         formData.delete('file');
       }
-      // send formData to server
 
     }
     console.log(this.clusterName);
@@ -56,6 +76,8 @@ export class UploadFileComponent implements OnInit {
   clearSelectedFiles() {
     this.selectedFiles = [];
     this.fileUploadForm.get('file')?.setValue(null);
+    this.can_attach = false;
+    this.clusterName = "";
   }
 
   onFileSelect(event: Event) {
@@ -74,33 +96,4 @@ export class UploadFileComponent implements OnInit {
     this.selectedFiles.splice(index, 1);
   }
 
-  // getFil1(event: any) {
-  //   this.file = event.target.files[0];
-  // }
-
-  // submitData() {
-  //   let formData = new FormData();
-  //   this.startUpload = true; //true while the upload not finished
-  //   formData.set('file', this.file);//setting  the dile
-  //
-  //
-  //   this.uploadObject.UploadCSV(formData);
-  //   /*this.http.post('http://localhost:8080/UploadCSV',formData,{
-  //     reportProgress:true,
-  //     observe:'events'
-  //   }).subscribe((event)=>{
-  //     if(event.type==HttpEventType.UploadProgress ){
-  //         this.total = event.total;//total file size
-  //         this.progress=Math.round(event.loaded / this.total * 100) +'%';
-  //         console.log(this.progress);
-  //         setTimeout(()=>{},3000);
-  //     }
-  //     else if(event.type==HttpEventType.Response){ //is the file succesfully uploaded
-  //       console.log(event);
-  //       this.uploaded=true;
-  //       this.startUpload=false;
-  //     }
-  //     })*/
-  //
-  // }
 }
