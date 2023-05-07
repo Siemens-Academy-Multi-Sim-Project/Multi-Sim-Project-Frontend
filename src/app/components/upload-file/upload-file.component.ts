@@ -43,10 +43,12 @@ export class UploadFileComponent implements OnInit {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         console.log(file);
-        formData.append('files', file);
+        formData.append('file', file);
+        this.uploadFile.handle_files(formData);
+        formData.delete('file');
       }
       // send formData to server
-      this.uploadFile.handle_files(formData);
+
     }
     console.log(this.clusterName);
   }

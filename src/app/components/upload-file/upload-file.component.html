@@ -8,7 +8,8 @@
       <br>
       <br>
       <label id="file" for="file">Select File(s)</label>
-      <input type="file" multiple formControlName="file" class="form-control-file" (change)="onFileSelect($event)">
+      <input type="file" multiple formControlName="file" class="form-control-file" name="file"
+             (change)="onFileSelect($event)">
     </div>
     <div *ngIf="selectedFiles.length > 0" class="selected-files">
       <h3>Selected Files:</h3>
