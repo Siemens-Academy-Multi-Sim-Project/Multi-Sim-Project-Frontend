@@ -1,0 +1,57 @@
+.container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  align-content: center;
+  color: white;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="file"] {
+  width: 100%;
+}
+
+button[type="submit"] {
+  width: 100%;
+}
+
+.selected-files {
+  margin-top: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  margin-bottom: 5px;
+}
+
+.clusterName {
+  border: 10px solid silver;
+  border-radius: 10px;
+  background-color: white;
+}
+.form-control-file{
+  align-content: center;
+  justify-content: center;
+}
