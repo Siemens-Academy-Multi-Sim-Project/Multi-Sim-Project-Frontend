@@ -1,7 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import { BarChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
-import { BarChartService } from 'src/app/services/bar-chart-service/bar-chart.service';
 import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistogram';
 
 @Component({
@@ -9,7 +8,7 @@ import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistog
     templateUrl: './overview-bar-chart.component.html',
     styleUrls: ['./overview-bar-chart.component.css'],  
 })
-export class OverviewBarChartComponent {
+export class OverviewBarChartComponent implements OnInit {
 
     @ViewChild("chart", { static: false }) chart!: ChartComponent;
     public chartOptions!: BarChartOptions;
@@ -24,7 +23,7 @@ export class OverviewBarChartComponent {
     binStrategy: GroupingStrategy[] = ["Tight Grouping", "Moderate Grouping", "Loose Grouping", "No Grouping"]
     selectedBinStrategy: GroupingStrategy = "Tight Grouping"
 
-    constructor() {
+    ngOnInit(): void {
         this.renderGraph()
     }
 
