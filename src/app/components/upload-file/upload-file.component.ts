@@ -48,15 +48,9 @@ export class UploadFileComponent implements OnInit {
         const file = files[i];
         console.log(file);
         formData.append('file', file);
-        await this.uploadFile.handle_files(formData).then(() => {
-          formData.delete('file');
-          setTimeout(() => {
-          }, 1000);
-        }).catch((err) => {
-          i--;
-          console.log("Trying Again");
-        });
       }
+      this.uploadFile.handle_files(formData);
+
     }
     console.log(this.clusterName);
   }
