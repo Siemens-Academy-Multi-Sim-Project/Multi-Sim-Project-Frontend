@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import {environment} from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -22,14 +22,14 @@ export class UploadFilesService {
   }
 
   async create_cluster(clusterName: string) {
-    this.httpClient.post(environment.baseUrl + '/profiling-data/create-clusterr', {"clusterName": clusterName}, {
+    this.httpClient.post(environment.baseUrl + '/profiling-data/create-cluster', {"clusterName": clusterName}, {
       headers: {
         Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
       }
     })
   }
 
-  handle_files(form: FormData) {
+ async handle_files(form: FormData) {
     this.httpClient.post(environment.baseUrl + '/UploadCSV', form, {
       reportProgress: true,
       observe: 'events',
@@ -41,8 +41,6 @@ export class UploadFilesService {
         this.total = event.total;//total file size
         this.progress = Math.round(event.loaded / this.total * 100) + '%';
         console.log(this.progress);
-        setTimeout(() => {
-        }, 3000);
       } else if (event.type == HttpEventType.Response) { //is the file succesfully uploaded
         console.log(event);
         this.uploaded = true;

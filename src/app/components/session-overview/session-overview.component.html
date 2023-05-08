@@ -4,15 +4,11 @@
     <div class="content-row">
 
       <div class="content">
-        <app-single-attribute [attribute_info]=parseSingleAttrub(0)></app-single-attribute>
+        <app-single-attribute [attribute_info]=singleAttributes[0]></app-single-attribute>
       </div>
 
       <div class="content">
-        <app-single-attribute [attribute_info]=parseSingleAttrub(0)></app-single-attribute>
-      </div>
-
-      <div class="content">
-        <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
+        <app-single-attribute [attribute_info]=singleAttributes[1]></app-single-attribute>
       </div>
 
       <div class="content">
@@ -20,11 +16,15 @@
       </div>
 
       <div class="content">
-        <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
+        <app-multi-attribute [multi_attribute_info]=multiAttributes[1]></app-multi-attribute>
       </div>
 
       <div class="content">
-        <app-multi-attribute [multi_attribute_info]=multiAttributes[0]></app-multi-attribute>
+        <app-multi-attribute [multi_attribute_info]=multiAttributes[2]></app-multi-attribute>
+      </div>
+
+      <div class="content">
+        <app-multi-attribute [multi_attribute_info]=multiAttributes[3]></app-multi-attribute>
       </div>
 
       <div class="content">
@@ -37,10 +37,10 @@
 
   <div class="lower">
 
-    <app-overview-bar-chart class="dashboard-component" id="bar-chart" 
-      [vsimTimes]="service.getVsimTimes()"
-      [vsimMemories]="service.getVsimMemory()"
-      [voptMemories]="service.getVoptMemory()"
+    <app-overview-bar-chart class="dashboard-component" id="bar-chart"
+                            [vsimTimes]="service.getVsimTimes()"
+                            [vsimMemories]="service.getVsimMemory()"
+                            [voptMemories]="service.getVoptMemory()"
     />
     <app-heat-map class="dashboard-component" id="heat-map"/>
     <div class="dashboard-component" id="usage-profile">

@@ -1,12 +1,11 @@
 <div class="container">
   <h1>File Upload</h1>
-  <form [formGroup]="fileUploadForm" class="form">
+  <form [formGroup]="fileUploadForm" class="form" (submit)="send_files()">
     <div class="form-group">
       <label id="clusterName" for="clusterName">Enter Cluster/Session Name</label>
       <br>
       <input type="text" formControlName="clusterName" class="clusterName">
       <br>
-      <button (click)="generate_cluster()" class="btn btn-primary">Create Cluster</button>
 
       <br>
 
@@ -23,6 +22,6 @@
       </ul>
       <button type="button" class="btn btn-danger" (click)="clearSelectedFiles()">Clear Selection</button>
     </div>
-    <button  class="btn btn-primary" (click)="send_files()" *ngIf="can_attach">Upload</button>
+    <button class="btn btn-primary" type="submit">Upload</button>
   </form>
 </div>
