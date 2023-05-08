@@ -18,6 +18,7 @@ import {UsageProfileTableComponent} from "./components/usage-profile-table/usage
 import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { ProfilingDataListComponent } from './profiling-data-list/profiling-data-list.component';
 
 
 @NgModule({
