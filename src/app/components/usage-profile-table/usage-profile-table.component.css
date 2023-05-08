@@ -6,18 +6,17 @@
 }
 
 .table-header {
-  font-size: 14px;
-  justify-content: space-evenly;
+  font-size: 13px;
+  justify-content: space-around;
   overflow: visible;
-  overflow-wrap: normal;
+  overflow-wrap: initial;
 }
 
 .col-entry {
   color: silver;
-  font-size: 12px;
+  font-size: 10px;
   max-width: 25px;
-  height: 10px;
-  text-overflow: ellipsis;
+  text-overflow: inherit;
   white-space: nowrap;
 
 }
@@ -25,7 +24,7 @@
 .col-entry:hover {
   transition: 0.5s;
   color: lawngreen;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .item-data {
