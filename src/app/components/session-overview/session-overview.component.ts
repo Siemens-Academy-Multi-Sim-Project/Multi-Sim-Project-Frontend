@@ -3,8 +3,8 @@ import {SingleAttribute} from "../../models/session-overview-models/singleAttrib
 import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
 import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
 import {UsageProfileTableComponent} from "../usage-profile-table/usage-profile-table.component";
-import { OverviewService } from 'src/app/services/overview-service/overview.service';
-import { ActivatedRoute } from '@angular/router';
+import {OverviewService} from 'src/app/services/overview-service/overview.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-session-overview',
@@ -12,27 +12,24 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./session-overview.component.css']
 })
 export class SessionOverviewComponent {
-  
-  constructor(public service: OverviewService, private route: ActivatedRoute){
+
+  constructor(public service: OverviewService, private route: ActivatedRoute) {
     console.log(this.route.snapshot.queryParamMap.get('clusterId'));
-    service.getClusterById(1).subscribe((data) => {
+
+
+    service.getClusterById(12).subscribe((data) => {
       console.log(data);
+      this.service.set_profiling_data(data);
+      console.log(this.service.profilingDataArray);
+      this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
+      this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]
+      this.dualAttribute = this.service.getSamplesAndCalls();
     })
   }
 
-  singleAttributes: SingleAttribute[] = [{count: 420, type: "Test Element"}];
-  multiAttributes: MultiAttribute[] = [{
-    min: 4,
-    max: 9,
-    avg: 6,
-    min_name: "min temp data",
-    max_name: "max temp data",
-    avg_name: "avg temp data",
-    measuring_unit: "GB"
-  }];
-  dualAttribute: DualAttribute  = {calls: 465, samples: 123};
 
-  parseSingleAttrub(ind: number){
-    return this.singleAttributes[ind]
-  }
+  singleAttributes: SingleAttribute[] = [];
+  multiAttributes: MultiAttribute[] = [];
+  dualAttribute: DualAttribute = {calls: 0, samples: 0};
+
 }
