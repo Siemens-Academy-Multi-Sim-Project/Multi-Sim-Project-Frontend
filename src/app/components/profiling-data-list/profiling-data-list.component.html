@@ -1,19 +1,19 @@
 
-<div class="container mt-4">
+<div class="container mt-4" *ngIf="profilingDataClusters.length !=0">
     <h1 class="title-container">List Of Previous Profiling Data Files Simulations</h1>
-    <ul class="nav flex-column">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
+    <ul class="nav flex-column nav-list-flex ">
+      <li class="nav-item" *ngFor="let i of profilingDataClusters">
+        <a class="nav-link" href="/session-overview?clusterId={{i.id}}">{{i.clusterName}}</a>
       </li>
     </ul>
+    <a href="/upload-file" class="link_404">Uplode New Files</a>
   </div>
+  
+
+  <div class="Container_404" *ngIf="profilingDataClusters.length ==0">
+    <div class="warning">
+      No Previous Data Found
+</div>
+<a href="/upload-file" class="link_404">Uplode New Files</a>
+</div>
   
