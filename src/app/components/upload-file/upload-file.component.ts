@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {HttpClient, HttpEventType} from '@angular/common/http';
-import { UploadFilesService } from 'src/app/services/upload-file-service/upload-files.service';
+import {UploadFilesService} from 'src/app/services/upload-file-service/upload-files.service';
 
 
 @Component({
@@ -29,20 +29,6 @@ export class UploadFileComponent implements OnInit {
     });
   }
 
-  async generate_cluster() {
-    this.clusterName = this.fileUploadForm.get('clusterName')?.value;
-    if (this.clusterName == "") {
-      alert("Please enter a cluster name");
-      return;
-    } else {
-      await this.uploadFile.create_cluster(this.clusterName).then(() => {
-        alert("Cluster created successfully Plz Attach Files");
-        this.can_attach = true;
-      }).catch((err) => {
-        alert("Error While Creating CLuster!");
-      });
-    }
-  }
 
   async send_files() {
     const formData = new FormData();
@@ -58,17 +44,19 @@ export class UploadFileComponent implements OnInit {
     }
     if (files && files.length > 0) {
       formData.append('ClusterName', this.clusterName);
-      await this.uploadFile.create_cluster(this.clusterName)
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         console.log(file);
         formData.append('file', file);
-        await this.uploadFile.handle_files(formData);
-        setTimeout(() => {
-        }, 1000);
-        formData.delete('file');
+        await this.uploadFile.handle_files(formData).then(() => {
+          formData.delete('file');
+          setTimeout(() => {
+          }, 1000);
+        }).catch((err) => {
+          i--;
+          console.log("Trying Again");
+        });
       }
-
     }
     console.log(this.clusterName);
   }
