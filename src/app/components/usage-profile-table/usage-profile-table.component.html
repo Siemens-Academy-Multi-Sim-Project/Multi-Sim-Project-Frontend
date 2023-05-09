@@ -14,8 +14,8 @@
 
 </table>
 <hr>
-<div class="item-data" >
+<div class="item-data">
   <p *ngIf="!selected_property">Click on An Entry to View All Its Content</p>
-  <p *ngIf="selected_item">{{selected_property}} : {{selected_item}}</p>
-  <button class="btn btn-danger" *ngIf="selected_item" (click)="resetSelected()">Clear</button>
+  <p *ngIf="selected_item.toString()">{{selected_property}} : {{selected_item.toString()}}</p>
+  <button class="btn btn-danger" *ngIf="selected_item.toString()" (click)="resetSelected()">Close</button>
 </div>

@@ -6,6 +6,7 @@ import {environment} from 'src/environments/environment';
 import {SingleAttribute} from "../../models/session-overview-models/singleAttribute";
 import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
 import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
+import {Columns} from "../../models/usage-profile/columns";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,9 @@ export class OverviewService {
 
   username = "omar.atef.2001@gmail.com"
   password = "1010abab";
-  profilingDataArray: ProfilingData[] = [
+  profilingDataArray: ProfilingData[] = []
+
+  /*profilingDataArray: ProfilingData[] = [
     {
       "id": 1,
       "methodology": "UVM",
@@ -28,6 +31,7 @@ export class OverviewService {
       "solverWallTime": "0.000s",
       "solverMemory": "0.65 MB",
       "randomizeCall": "0",
+      "totalsamples": "0",
       "voptTime": "3.57 sec",
       "voptMemory": "0.38 GB",
       "voptCMDCommand": "vopt -fprofile \"+acc\" -o ethmac_tb_opt -2008 \"+floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor\" -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1",
@@ -277,7 +281,7 @@ export class OverviewService {
       "fileName": "ethmac_554.csv"
     }
   ]
-
+*/
   constructor(private http: HttpClient) {
   }
 
@@ -433,13 +437,43 @@ export class OverviewService {
     let calls: number = 0
 
     this.profilingDataArray.forEach((data) => {
-      let samples_unit_data = new UnitData(data.designCompositionInstances)
-      samples += samples_unit_data.value
+      samples += data.totalSamples
       let calls_unit_data = new UnitData(data.randomizeCall)
       calls += calls_unit_data.value
     })
 
-    return {samples: 0, calls: calls}
+    return {samples: samples, calls: calls}
+  }
+
+
+  getUsageProfilingData(): Columns[] {
+    let cols: Columns[] = []
+    for (let i = 0; i < this.profilingDataArray.length; i++) {
+      let calls_unit_data = new UnitData(this.profilingDataArray[i].randomizeCall)
+
+      let col: Columns = {
+        file_name: this.profilingDataArray[i].fileName,
+        design_type: this.profilingDataArray[i].designType,
+        methodology: this.profilingDataArray[i].methodology,
+        language: this.profilingDataArray[i].designCompositionName.split(" ")[0],
+        du_count: this.profilingDataArray[i].designUnits.length,
+        vopt_time: this.profilingDataArray[i].voptTime,
+        vsim_time: this.profilingDataArray[i].vsimTime,
+        vopt_memory: this.profilingDataArray[i].voptMemory,
+        vsim_memory: this.profilingDataArray[i].vsimMemory,
+        pref_samples: this.profilingDataArray[i].totalSamples,
+        randomize_calls: calls_unit_data.value,
+        date_of_collection: this.profilingDataArray[i].dateOfCollection,
+        vopt_cmd: this.profilingDataArray[i].voptCMDCommand,
+        vsim_cmd: this.profilingDataArray[i].vsimCMDCommand,
+      }
+      cols.push(col)
+    }
+
+    console.log("cols " + cols.forEach((col) => {
+      console.log(col)
+    }));
+    return cols
   }
 
   getAverage(array: number[]): number {
