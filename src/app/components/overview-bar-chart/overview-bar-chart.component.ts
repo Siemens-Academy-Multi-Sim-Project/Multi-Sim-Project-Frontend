@@ -17,7 +17,7 @@ export class OverviewBarChartComponent implements OnInit {
     @Input() public vsimMemories: number[] = [];
     @Input() public voptMemories: number[] = [];
 
-    graphingChoices = ["Vsim Time", "Vopt Memory", "Vsim Memory"]
+    graphingChoices = ["","Vsim Time", "Vopt Memory", "Vsim Memory"]
     selectedGraphingChoice: string = this.graphingChoices[0]
 
     binStrategy: GroupingStrategy[] = ["Tight Grouping", "Moderate Grouping", "Loose Grouping", "No Grouping"]
@@ -29,12 +29,14 @@ export class OverviewBarChartComponent implements OnInit {
 
     getCurrentlySelectedTestData(): number[]{
         switch (this.selectedGraphingChoice) {
-            case this.graphingChoices[0]:
-                return this.vsimTimes
             case this.graphingChoices[1]:
+                return this.vsimTimes
+            case this.graphingChoices[2]:
                 return this.voptMemories
-            default:
+            case this.graphingChoices[3]:
                 return this.vsimMemories
+            default:
+                return []
         }
     }
 

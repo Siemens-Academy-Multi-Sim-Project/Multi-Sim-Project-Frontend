@@ -17,13 +17,17 @@ export class SessionOverviewComponent {
     console.log(this.route.snapshot.queryParamMap.get('clusterId'));
 
 
-    service.getClusterById(12).subscribe((data) => {
+    service.getClusterById(1).subscribe((data) => {
       console.log(data);
       this.service.set_profiling_data(data);
       console.log(this.service.profilingDataArray);
       this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
       this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]
       this.dualAttribute = this.service.getSamplesAndCalls();
+      
+      this.vsimTimes = this.service.getVsimTimes();
+      this.voptMemories = this.service.getVoptMemory();
+      this.vsimMemories = this.service.getVsimMemory();
     })
   }
 
@@ -31,5 +35,9 @@ export class SessionOverviewComponent {
   singleAttributes: SingleAttribute[] = [];
   multiAttributes: MultiAttribute[] = [];
   dualAttribute: DualAttribute = {calls: 0, samples: 0};
+
+  public vsimTimes: number[] = [];
+  public vsimMemories: number[] = [];
+  public voptMemories: number[] = [];
 
 }
