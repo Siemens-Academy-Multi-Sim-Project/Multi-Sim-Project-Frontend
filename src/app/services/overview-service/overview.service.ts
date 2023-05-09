@@ -1,12 +1,11 @@
-import {HttpClient} from '@angular/common/http';
-import {Injectable} from '@angular/core';
-import {ProfilingData} from 'src/app/models/session-overview-models/profiling-data/ProfilingData';
-import {UnitData} from 'src/app/models/session-overview-models/profiling-data/UnitData';
-import {environment} from 'src/environments/environment';
-import {SingleAttribute} from "../../models/session-overview-models/singleAttribute";
-import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
-import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
-import {Columns} from "../../models/usage-profile/columns";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { ProfilingData } from 'src/app/models/session-overview-models/profiling-data/ProfilingData';
+import { environment } from 'src/environments/environment';
+import { SingleAttribute } from "../../models/session-overview-models/singleAttribute";
+import { MultiAttribute } from "../../models/session-overview-models/multiAttribute";
+import { DualAttribute } from "../../models/session-overview-models/dual-attribute";
+import { Columns } from "../../models/usage-profile/columns";
 import { BarChartService } from './bar-chart-service/bar-chart.service';
 import { HeatMapService } from './heat-map-service/heat-map.service';
 import { TopOverviewService } from './top-overview-service/top-overview.service';
@@ -29,7 +28,7 @@ export class OverviewService {
     private heatMapService: HeatMapService,
     private topOverviewService: TopOverviewService,
     private usageProfileService: UsageProfileService
-  ){}
+  ) { }
 
   getClusterById(id: number) {
     return this.http.get<ProfilingData[]>(environment.baseUrl + `/profiling-data-clusters/getProfilingData/${id}`, {
