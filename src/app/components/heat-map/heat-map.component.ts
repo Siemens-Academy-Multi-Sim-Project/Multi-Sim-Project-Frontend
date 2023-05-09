@@ -2,7 +2,6 @@ import { style } from '@angular/animations';
 import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartComponent } from 'ng-apexcharts';
 import { TreeMapChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
-import { HeatMapService } from 'src/app/services/heat-map-service/heat-map.service';
 import { OverviewService } from 'src/app/services/overview-service/overview.service';
 
 
@@ -17,7 +16,6 @@ export class HeatMapComponent implements OnInit, OnChanges {
 
     @ViewChild("chart") chart!: ChartComponent;
     public chartOptions!: TreeMapChartOptions;
-    heatMapService!: HeatMapService
 
     @Input() data: Map<string, number> = new Map<string, number>()
     @Input() avgPercentages:Map<string,  number> = new Map<string, number>();
