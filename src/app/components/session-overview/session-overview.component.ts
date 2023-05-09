@@ -1,10 +1,9 @@
-import {Component} from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {SingleAttribute} from "../../models/session-overview-models/singleAttribute";
 import {MultiAttribute} from "../../models/session-overview-models/multiAttribute";
 import {DualAttribute} from "../../models/session-overview-models/dual-attribute";
-import {UsageProfileTableComponent} from "../usage-profile-table/usage-profile-table.component";
 import {OverviewService} from 'src/app/services/overview-service/overview.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Columns} from "../../models/usage-profile/columns";
 import {MatTableDataSource} from "@angular/material/table";
 
@@ -15,11 +14,18 @@ import {MatTableDataSource} from "@angular/material/table";
 })
 export class SessionOverviewComponent {
 
-  constructor(public service: OverviewService, private route: ActivatedRoute) {
-    console.log(this.route.snapshot.queryParamMap.get('clusterId'));
-    service.getClusterById(1).subscribe((data) => {
-      console.log(data);
+  constructor(public service: OverviewService, private route: ActivatedRoute, private router: Router) {
+    let id = this.route.snapshot.queryParamMap.get('clusterId') || "blabla";
+
+    if(id == "blabla"){
+      this.router.navigate(['/clusterNotFound'])
+    }
+
+    service.getClusterById(id).subscribe((data) => {
       this.service.set_profiling_data(data);
+      if(data.length == 0){
+        this.router.navigate(['/clusterNotFound'])
+      }
       // console.log(this.service.profilingDataArray);
       this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
       this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]

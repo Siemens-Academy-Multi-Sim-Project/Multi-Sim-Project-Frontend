@@ -1,6 +1,6 @@
 <div class="container">
   <h1>File Upload</h1>
-  <form [formGroup]="fileUploadForm" class="form" (submit)="send_files()">
+  <form [formGroup]="fileUploadForm" class="form" (submit)="onSubmit()">
     <div class="form-group">
       <label id="clusterName" for="clusterName">Enter Cluster/Session Name</label>
       <br>
@@ -13,11 +13,16 @@
       <input type="file" multiple formControlName="file" class="form-control-file" name="file"
              (change)="onFileSelect($event)">
     </div>
-    <div *ngIf="selectedFiles.length > 0" class="selected-files">
+    <div *ngIf="files.size > 0" class="selected-files">
       <h3>Selected Files:</h3>
       <ul>
-        <li *ngFor="let file of selectedFiles; let i = index">{{ file.name }}
-          <button type="button" class="btn btn-sm btn-danger" (click)="removeSelectedFile(i)">Remove</button>
+        <li  *ngFor="let file of files | keyvalue"> 
+          {{ file.key }}
+          <div style="display: inline-flex" [ngSwitch]="filesStates.get(file.key)">
+            <button *ngSwitchCase="Idle" type="button" class="btn btn-sm btn-danger" (click)="removeSelectedFileMap(file.key)">Remove</button>
+            <button *ngSwitchCase="Uploading" type="button" class="btn btn-info">Loading</button>
+            <button *ngSwitchCase="Done" type="button" class="btn btn-success">Done</button>
+          </div>
         </li>
       </ul>
       <button type="button" class="btn btn-danger" (click)="clearSelectedFiles()">Clear Selection</button>

@@ -32,7 +32,7 @@ export class OverviewService {
     private usageProfileService: UsageProfileService
   ) { }
 
-  getClusterById(id: number) {
+  getClusterById(id: string) {
     return this.http.get<ProfilingData[]>(environment.baseUrl + `/profiling-data-clusters/getProfilingData/${id}`, {
       headers: {
         Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
