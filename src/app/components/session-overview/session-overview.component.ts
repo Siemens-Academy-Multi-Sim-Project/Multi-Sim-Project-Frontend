@@ -21,18 +21,20 @@ export class SessionOverviewComponent {
 
     service.getClusterById(6).subscribe((data) => {
       console.log(data);
-      this.service.set_profiling_data(data);
-      console.log(this.service.profilingDataArray);
-      this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
-      this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]
-      this.dualAttribute = this.service.getSamplesAndCalls();
-      
-      this.vsimTimes = this.service.getVsimTimes();
-      this.voptMemories = this.service.getVoptMemory();
-      this.vsimMemories = this.service.getVsimMemory();
-      this.usageProfileData = this.service.getUsageProfilingData();
-      this.table_data = new MatTableDataSource<Columns>(this.usageProfileData);
+      // this.service.set_profiling_data(data);
+      // console.log(this.service.profilingDataArray);
     })
+    this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
+    this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]
+    this.dualAttribute = this.service.getSamplesAndCalls();
+    
+    this.vsimTimes = this.service.getVsimTimes();
+    this.voptMemories = this.service.getVoptMemory();
+    this.vsimMemories = this.service.getVsimMemory();
+    this.usageProfileData = this.service.getUsageProfilingData();
+    this.table_data = new MatTableDataSource<Columns>(this.usageProfileData);
+    this.duHits = this.service.getDuLocalHitsData()
+    console.log(this.duHits)
   }
 
 
@@ -45,5 +47,7 @@ export class SessionOverviewComponent {
   public vsimTimes: number[] = [];
   public vsimMemories: number[] = [];
   public voptMemories: number[] = [];
+
+  duHits: Map<string,  number> = new Map<string, number>();
 
 }

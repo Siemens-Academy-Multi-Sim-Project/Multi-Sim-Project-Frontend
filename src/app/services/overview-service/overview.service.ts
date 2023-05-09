@@ -17,9 +17,9 @@ export class OverviewService {
 
   username = "omar.atef.2001@gmail.com"
   password = "1010abab";
-  profilingDataArray: ProfilingData[] = []
+  // profilingDataArray: ProfilingData[] = []
 
-  /*profilingDataArray: ProfilingData[] = [
+  profilingDataArray: ProfilingData[] = [
     {
       "id": 1,
       "methodology": "UVM",
@@ -31,7 +31,7 @@ export class OverviewService {
       "solverWallTime": "0.000s",
       "solverMemory": "0.65 MB",
       "randomizeCall": "0",
-      "totalsamples": "0",
+      "totalSamples": 0,
       "voptTime": "3.57 sec",
       "voptMemory": "0.38 GB",
       "voptCMDCommand": "vopt -fprofile \"+acc\" -o ethmac_tb_opt -2008 \"+floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor\" -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1",
@@ -69,6 +69,7 @@ export class OverviewService {
       "solverWallTime": "0.000s",
       "solverMemory": "0.65 MB",
       "randomizeCall": "0",
+      "totalSamples": 0,
       "voptTime": "3.65 sec",
       "voptMemory": "0.38 GB",
       "voptCMDCommand": "vopt -fprofile \"+acc\" -o ethmac_tb_opt -2008 \"+floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor\" -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1",
@@ -107,6 +108,7 @@ export class OverviewService {
       "solverMemory": "0.65 MB",
       "randomizeCall": "0",
       "voptTime": "3.57 sec",
+      "totalSamples": 0,
       "voptMemory": "0.38 GB",
       "voptCMDCommand": "vopt -fprofile \"+acc\" -o ethmac_tb_opt -2008 \"+floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor\" -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1",
       "vsimTime": "1.51 sec",
@@ -136,6 +138,7 @@ export class OverviewService {
       "id": 4,
       "methodology": "UVM",
       "designType": "RTL",
+      "totalSamples": 0,
       "toolVersion": "QA Baseline: 2024.1 Beta - 5541880",
       "platform": "linux_x86_64",
       "dateOfCollection": "03/31/2023 at 05:03",
@@ -174,6 +177,7 @@ export class OverviewService {
       "methodology": "UVM",
       "designType": "RTL",
       "toolVersion": "QA Baseline: 2024.1 Beta - 5541880",
+      "totalSamples": 0,
       "platform": "linux_x86_64",
       "dateOfCollection": "03/31/2023 at 05:03",
       "totalWallTime": "1.510s",
@@ -213,6 +217,7 @@ export class OverviewService {
       "toolVersion": "QA Baseline: 2024.1 Beta - 5541880",
       "platform": "linux_x86_64",
       "dateOfCollection": "03/31/2023 at 03:28",
+      "totalSamples": 0,
       "totalWallTime": "2.130s",
       "solverWallTime": "0.000s",
       "solverMemory": "0.65 MB",
@@ -258,6 +263,7 @@ export class OverviewService {
       "voptMemory": "0.38 GB",
       "voptCMDCommand": "vopt -fprofile \"+acc\" -o ethmac_tb_opt -2008 \"+floatparameters+UVM_TESTNAME+tx_cov_monitor+rx_cov_monitor\" -mfcu -timescale 1ns/1ns -timescale 1ns/10ps -csessiondir /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/sessions eth_dut_binds ethmac_tb -work /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work -statslog /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/stats_log -csession=incr -csessionid=1",
       "vsimTime": "1.51 sec",
+      "totalSamples": 0,
       "vsimMemory": "0.75 GB",
       "vsimCMDCommand": "vsim -c -assertcounts -lib /home/habdel/viq/ethermac-2022.1/sim/vrm/VRMDATA/regression/Compile/qrun.out/work ethmac_tb_opt -sv_seed 28925691 +SEED=28925691 -fprofile+perf=high+solver+stats +UVM_TESTNAME=ethmac_reg_test +tx_cov_monitor=ethmac_tx_ethframe_cov +rx_cov_monitor=ethmac_rx_ethframe_cov +uvm_set_type_override=ethmac_reg_seq,ethmac_reg_access_seq -uvmcontrol=struct -msgmode both -displaymsgmode both -GfailureRate=8",
       "designCompositionName": "SV (DU: 77)",
@@ -281,7 +287,7 @@ export class OverviewService {
       "fileName": "ethmac_554.csv"
     }
   ]
-*/
+
   constructor(private http: HttpClient) {
   }
 
@@ -482,5 +488,45 @@ export class OverviewService {
       sum += value
     })
     return (sum / array.length).toFixed(2) as unknown as number
+  }
+
+  getDuLocalHitsData(): Map<string, number> {
+    let duLocalHits: Map<string, number> = new Map<string, number>();
+    let localHitsSum: number = 0;
+    
+    this.profilingDataArray.forEach((profilingData) => {
+      profilingData.designUnits.forEach((designUnit) => {
+        let localHits: number = duLocalHits.get(designUnit.name) || 0
+        localHits += designUnit.localHits
+        localHitsSum += designUnit.localHits
+
+        duLocalHits.set(designUnit.name, localHits)
+      })
+    })
+
+    // convert sum into percentages
+    duLocalHits.forEach((value, key) => {
+      duLocalHits.set(key, value/localHitsSum)
+    })
+
+    return duLocalHits
+  }
+
+
+  getDuAvgHitPercentage(): Map<string, number> {
+    let localPercentages: Map<string, number[]> = new Map<string, number[]>();
+    let avgLocalPercentages: Map<string, number> = new Map<string, number>();
+    this.profilingDataArray.forEach((profilingData) => {
+      profilingData.designUnits.forEach((desginUnit) => {
+        let percentages: number[] = localPercentages.get(desginUnit.name) || []
+        percentages.push(Number.parseFloat(desginUnit.localPercentage)/100.00)
+        localPercentages.set(desginUnit.name, percentages)
+      })
+    })
+    localPercentages.forEach((percentages, key) => {
+      avgLocalPercentages.set(key, this.getAverage(percentages))
+    })
+
+    return avgLocalPercentages
   }
 }
