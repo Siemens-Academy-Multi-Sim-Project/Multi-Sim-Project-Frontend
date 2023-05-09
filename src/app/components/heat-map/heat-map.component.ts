@@ -1,8 +1,8 @@
 import { style } from '@angular/animations';
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartComponent } from 'ng-apexcharts';
 import { TreeMapChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
-import { HeatMapService } from 'src/app/services/heat-map-service/heat-map.service';
+import { OverviewService } from 'src/app/services/overview-service/overview.service';
 
 
 
@@ -11,20 +11,22 @@ import { HeatMapService } from 'src/app/services/heat-map-service/heat-map.servi
     selector: 'app-heat-map',
     templateUrl: './heat-map.component.html',
     styleUrls: ['./heat-map.component.css'],
-    providers: [HeatMapService]
 })
-export class HeatMapComponent {
+export class HeatMapComponent implements OnInit, OnChanges {
+
     @ViewChild("chart") chart!: ChartComponent;
     public chartOptions!: TreeMapChartOptions;
-    heatMapService!: HeatMapService
 
-    constructor(heatMapService: HeatMapService) {
-        this.heatMapService = heatMapService
+    @Input() data: Map<string, number> = new Map<string, number>()
+    @Input() avgPercentages:Map<string,  number> = new Map<string, number>();
+
+    ngOnInit(): void {
         this.renderGraph()
     }
-
+    ngOnChanges(changes: SimpleChanges): void {
+        this.renderGraph()
+    }
     renderGraph() {
-        let data = this.heatMapService.getDuPerformance()
-        this.chartOptions = TreeMapChartOptions.createTreeMapChartOptions(data)    
+        this.chartOptions = TreeMapChartOptions.createTreeMapChartOptions(this.data, this.avgPercentages)    
     }
 }
