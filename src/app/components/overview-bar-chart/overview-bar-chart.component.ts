@@ -1,7 +1,6 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ChartComponent } from "ng-apexcharts";
 import { BarChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
-import { BarChartService } from 'src/app/services/bar-chart-service/bar-chart.service';
 import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistogram';
 
 @Component({
@@ -9,7 +8,7 @@ import { GroupingStrategy,  groupData } from 'src/app/shared/utils/DynamicHistog
     templateUrl: './overview-bar-chart.component.html',
     styleUrls: ['./overview-bar-chart.component.css'],  
 })
-export class OverviewBarChartComponent {
+export class OverviewBarChartComponent implements OnInit {
 
     @ViewChild("chart", { static: false }) chart!: ChartComponent;
     public chartOptions!: BarChartOptions;
@@ -18,24 +17,26 @@ export class OverviewBarChartComponent {
     @Input() public vsimMemories: number[] = [];
     @Input() public voptMemories: number[] = [];
 
-    graphingChoices = ["Vsim Time", "Vopt Memory", "Vsim Memory"]
+    graphingChoices = ["","Vsim Time", "Vopt Memory", "Vsim Memory"]
     selectedGraphingChoice: string = this.graphingChoices[0]
 
     binStrategy: GroupingStrategy[] = ["Tight Grouping", "Moderate Grouping", "Loose Grouping", "No Grouping"]
     selectedBinStrategy: GroupingStrategy = "Tight Grouping"
 
-    constructor() {
+    ngOnInit(): void {
         this.renderGraph()
     }
 
     getCurrentlySelectedTestData(): number[]{
         switch (this.selectedGraphingChoice) {
-            case this.graphingChoices[0]:
-                return this.vsimTimes
             case this.graphingChoices[1]:
+                return this.vsimTimes
+            case this.graphingChoices[2]:
                 return this.voptMemories
-            default:
+            case this.graphingChoices[3]:
                 return this.vsimMemories
+            default:
+                return []
         }
     }
 

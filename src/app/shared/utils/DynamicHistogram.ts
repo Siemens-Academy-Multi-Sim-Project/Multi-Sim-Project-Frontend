@@ -55,12 +55,19 @@ export function groupData(data: number[], strategy: GroupingStrategy = "Tight Gr
         }
     }
 
+    // remove emtpy bins
+    points = points.filter((bin) => {
+        return bin.length != 0
+    })
+
+    points = [...points].sort((a, b) => a[0]-b[0])
+
     for (let i = 0; i < points.length; i++) {
-        if (i == 0) {
-            let label = " < " + (Math.max(...points[i]) + 1);
+        if (i == 0 && points.length != 1) {
+            let label = " <= " + (Math.max(...points[i]));
             labels.push(label)
-        } else if (i == points.length - 1) {
-            let label = " > " + (Math.min(...points[i]) - 1);
+        } else if (i == points.length - 1 && points.length != 1) {
+            let label = " >= " + (Math.min(...points[i]));
             labels.push(label);
         } else {
             let set = new Set(points[i])

@@ -26,6 +26,10 @@ export class SessionOverviewComponent {
       this.singleAttributes = [this.service.getTotalSimulations(), this.service.getDesigns()]
       this.multiAttributes = [this.service.getVoptTime_multiAttr(), this.service.getVsimTime_multiAttr(), this.service.getVoptMemory_multiAttr(), this.service.getVsimMemory_multiAttr()]
       this.dualAttribute = this.service.getSamplesAndCalls();
+      
+      this.vsimTimes = this.service.getVsimTimes();
+      this.voptMemories = this.service.getVoptMemory();
+      this.vsimMemories = this.service.getVsimMemory();
       this.usageProfileData = this.service.getUsageProfilingData();
       this.table_data = new MatTableDataSource<Columns>(this.usageProfileData);
     })
@@ -37,5 +41,9 @@ export class SessionOverviewComponent {
   dualAttribute: DualAttribute = {calls: 0, samples: 0};
   usageProfileData: Columns[] = [];
   table_data: MatTableDataSource<Columns> = new MatTableDataSource<Columns>(this.usageProfileData);
+
+  public vsimTimes: number[] = [];
+  public vsimMemories: number[] = [];
+  public voptMemories: number[] = [];
 
 }
