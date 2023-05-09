@@ -38,11 +38,14 @@
   <div class="lower">
 
     <app-overview-bar-chart class="dashboard-component" id="bar-chart"
-                            [vsimTimes]="service.getVsimTimes()"
-                            [vsimMemories]="service.getVsimMemory()"
-                            [voptMemories]="service.getVoptMemory()"
+                            [vsimTimes]="vsimTimes"
+                            [vsimMemories]="vsimMemories"
+                            [voptMemories]="voptMemories"
     />
-    <app-heat-map class="dashboard-component" id="heat-map"/>
+    <app-heat-map class="dashboard-component" id="heat-map"
+      [data]="duHits"
+      [avgPercentages]="duAvgPercentages"
+    />
     <div class="dashboard-component" id="usage-profile">
 
       <h6>Usage Profile</h6>
