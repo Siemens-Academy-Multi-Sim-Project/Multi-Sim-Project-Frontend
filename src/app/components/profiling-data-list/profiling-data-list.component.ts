@@ -10,16 +10,19 @@ import { ProfilingDataListService } from 'src/app/services/profiling-data-list-s
 export class ProfilingDataListComponent {
 profilingDataClusters:DataCluster[] = [];
 p:any;
-// profilingDataClustersNames:String[]=[];
+
 constructor(private clusterService:ProfilingDataListService){
-  // clusterService.getClustersData().subscribe((data) => {
-  //   console.log(data);
-  //   this.clusterService.setClusterData(data);
-  //   console.log(this.clusterService.profilingDataClustersArray);
-  // })
-  this.clusterService.profilingDataClustersArray.forEach((data) => {
-    this.profilingDataClusters.push(data)
+  clusterService.getClustersData().subscribe((data) => {
+    console.log(data);
+    this.clusterService.setClusterData(data);
+    // console.log(this.clusterService.profilingDataClustersArray);
+    this.clusterService.profilingDataClustersArray.forEach((data) => {
+      this.profilingDataClusters.push(data)
+    })
   })
+  // this.profilingDataClusters.forEach((data)=>{
+  //   console.log(data);
+  // })
   
 }
 

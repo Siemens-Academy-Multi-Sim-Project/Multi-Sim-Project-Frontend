@@ -15,8 +15,8 @@ import {Columns} from "../../models/usage-profile/columns";
 
 export class OverviewService {
 
-  username = "omar.atef.2001@gmail.com"
-  password = "1010abab";
+  username = "sara@g.com"
+  password = "12345";
   profilingDataArray: ProfilingData[] = []
 
   /*profilingDataArray: ProfilingData[] = [
