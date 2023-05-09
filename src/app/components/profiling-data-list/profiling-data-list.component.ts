@@ -9,6 +9,7 @@ import { ProfilingDataListService } from 'src/app/services/profiling-data-list-s
 })
 export class ProfilingDataListComponent {
 profilingDataClusters:DataCluster[] = [];
+p:any;
 // profilingDataClustersNames:String[]=[];
 constructor(private clusterService:ProfilingDataListService){
   // clusterService.getClustersData().subscribe((data) => {

@@ -19,6 +19,7 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import {ProfilingDataListService} from './services/profiling-data-list-service/profiling-data-list.service'
+import {NgxPaginationModule} from 'ngx-pagination'
 
 
 
@@ -45,9 +46,9 @@ import {ProfilingDataListService} from './services/profiling-data-list-service/p
     HttpClientModule,
     MatTableModule,
     MatDividerModule,
-
+    NgxPaginationModule,
   ],
-  providers: [ProfilingDataListService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
