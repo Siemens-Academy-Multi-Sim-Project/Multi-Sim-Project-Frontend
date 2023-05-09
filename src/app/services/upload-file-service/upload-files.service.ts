@@ -15,27 +15,27 @@ export class UploadFilesService {
   uploaded: boolean = false;
   startUpload: boolean = false;
 
-  username = "sara@g.com"
-  password = "12345";
+  username = "email@email.com"
+  password = "1234";
 
   constructor(public httpClient: HttpClient) {
 
   }
 
-  async create_cluster(clusterName: string) {
-    this.httpClient.post <string>(environment.baseUrl + '/profiling-data/create-cluster', {"clusterName": clusterName}, {
+  create_cluster(clusterName: string) {
+    return this.httpClient.post <string>(environment.baseUrl + '/profiling-data/create-cluster', {"clusterName": clusterName}, {
       headers: {
         Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
       }
     })
   }
 
-  async handle_files(form: FormData) {
+  handle_files(form: FormData) {
     for (let i = 0; i < form.getAll('file').length; i++) {
       let temp = new FormData();
       temp.append('file', form.getAll('file')[i]);
       temp.append('ClusterName', form.getAll('ClusterName')[0]);
-      this.httpClient.post<FormData>(environment.baseUrl + '/UploadCSV', form, {
+      this.httpClient.post<FormData>(environment.baseUrl + '/UploadCSV', temp, {
         reportProgress: true,
         observe: 'events',
         headers: {

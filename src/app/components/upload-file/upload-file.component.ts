@@ -30,7 +30,7 @@ export class UploadFileComponent implements OnInit {
   }
 
 
-  async send_files() {
+  send_files() {
     const formData = new FormData();
     const files = this.selectedFiles;
     this.clusterName = this.fileUploadForm.get('clusterName')?.value;
@@ -49,7 +49,11 @@ export class UploadFileComponent implements OnInit {
         console.log(file);
         formData.append('file', file);
       }
-      this.uploadFile.handle_files(formData);
+      this.uploadFile.create_cluster(this.clusterName)
+        .subscribe((data) => {
+          console.log(data);
+          this.uploadFile.handle_files(formData)
+        })
 
     }
     console.log(this.clusterName);
