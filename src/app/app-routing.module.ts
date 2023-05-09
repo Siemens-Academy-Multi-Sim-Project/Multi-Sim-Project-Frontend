@@ -5,6 +5,7 @@ import {RegisterComponent} from './components/register/register.component';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {SessionOverviewComponent} from './components/session-overview/session-overview.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
+import { ProfilingDataListComponent } from './components/profiling-data-list/profiling-data-list.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path: 'signUp', component: RegisterComponent},
   {path: 'session-overview', component: SessionOverviewComponent},
   {path: "upload-file", component: UploadFileComponent},
+  {path: "profiling-data-list", component: ProfilingDataListComponent},
   {path: "**", component: PageNotFoundComponent},
 ];
 
@@ -22,4 +24,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const routingComponents = [LoginComponent, RegisterComponent, PageNotFoundComponent ]
+export const routingComponents = [LoginComponent, RegisterComponent, PageNotFoundComponent,ProfilingDataListComponent ]

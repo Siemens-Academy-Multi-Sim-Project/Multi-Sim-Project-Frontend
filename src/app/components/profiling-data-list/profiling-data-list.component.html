@@ -1,0 +1,20 @@
+
+<div class="container mt-4" *ngIf="profilingDataClusters.length !=0">
+    <h1 class="title-container">List Of Previous Profiling Data Files Simulations</h1>
+    <ul class="nav flex-column nav-list-flex "> 
+      <li class="nav-item" *ngFor="let i of profilingDataClusters | paginate: {itemsPerPage:4,currentPage: p}">
+        <a class="nav-link" href="/session-overview?clusterId={{i.id}}">{{i.clusterName}}</a>
+      </li>
+      <pagination-controls (pageChange)= "p = $event" ></pagination-controls>
+    </ul>
+    <a href="/upload-file" class="link_404">Uplode New Files</a>
+  </div>
+  
+
+  <div class="Container_404" *ngIf="profilingDataClusters.length ==0">
+    <div class="warning">
+      No Previous Data Found
+</div>
+<a href="/upload-file" class="link_404">Uplode New Files</a>
+</div>
+  

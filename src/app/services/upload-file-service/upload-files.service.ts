@@ -15,8 +15,8 @@ export class UploadFilesService {
   uploaded: boolean = false;
   startUpload: boolean = false;
 
-  username = "omar.atef.2001@gmail.com"
-  password = "1010abab";
+  username = "sara@g.com"
+  password = "12345";
 
   constructor(public httpClient: HttpClient) {
 
