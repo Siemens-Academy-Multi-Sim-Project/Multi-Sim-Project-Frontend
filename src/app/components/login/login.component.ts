@@ -20,7 +20,7 @@ export class LoginComponent {
   submit(){
     this.email=this.loginForm.get('email')?.value;
     this.password=this.loginForm.get('password')?.value;
-    this.loginService.login(this.email, this.password)
+   // this.loginService.login(this.email, this.password)
     localStorage.setItem("Email: ", this.email);
     localStorage.setItem("Password: ", this.password);
   }
