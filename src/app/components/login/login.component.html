@@ -20,7 +20,7 @@
               <small class="text-danger" *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long</small>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary login-submit-button">Log In</button>
+          <button type="submit" (click)="submit()" class="btn btn-primary login-submit-button">Log In</button>
         </form>
         <div class="login-footer">
               <p class="signup-note">Don’t have an account? <a routerLink="/signUp" class="signup-note-link">Sign up</a></p>
@@ -28,5 +28,5 @@
             </div>
         </div>
       </div>
-    
+
 </div>

@@ -8,8 +8,8 @@ import {formatDate} from "@angular/common";
 })
 export class UploadFilesService {
 
-  username = "email@email.com"
-  password = "1234";
+  username = "awadafif77777@gmail.comm"
+  password = "password";
 
   constructor(public httpClient: HttpClient) {
 
