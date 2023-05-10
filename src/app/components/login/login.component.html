@@ -23,6 +23,8 @@
           <button type="submit" (click)="submit()" class="btn btn-primary login-submit-button">Log In</button>
         </form>
         <div class="login-footer">
+          <p style="color: red;" *ngIf="errorMessage">Wrong Username or Password</p>
+
               <p class="signup-note">Don’t have an account? <a routerLink="/signUp" class="signup-note-link">Sign up</a></p>
               <a href="#" class="forgot-password">Forgot your password?</a>
             </div>

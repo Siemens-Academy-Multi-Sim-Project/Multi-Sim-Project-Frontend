@@ -19,8 +19,8 @@ import { UsageProfileService } from './usage-profile-service/usage-profile.servi
 export class OverviewService {
 
 
-  username = "email@email.com"
-  password = "1234";
+  username = "awadafif77777@gmail.com";
+  password = "password";
 
   profilingDataArray: ProfilingData[] = []
 
