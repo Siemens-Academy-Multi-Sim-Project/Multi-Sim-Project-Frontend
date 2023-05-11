@@ -41,12 +41,12 @@
               <small class="text-danger" *ngIf="registerationForm.errors?.['misMatch'] && registerationForm.get('confirmPassword')?.valid">Passwords do not match</small>
             </div>
           </div>
-          <button type="submit" class="btn btn-primary signup-submit-button">Sign Up</button>
+          <button type="submit" (click)="submit()"  class="btn btn-primary signup-submit-button">Sign Up</button>
         </form>
         <div class="signup-footer">
               <p class="login-note">Already have an account? <a routerLink="/login" class="login-note-link">Log In</a></p>
             </div>
         </div>
       </div>
-    
+
 </div>

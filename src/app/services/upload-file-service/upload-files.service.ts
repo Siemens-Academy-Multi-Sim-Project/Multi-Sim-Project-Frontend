@@ -8,17 +8,14 @@ import {formatDate} from "@angular/common";
 })
 export class UploadFilesService {
 
-  username = "email@email.com"
-  password = "1234";
+  auth = localStorage.getItem('Auth');
 
   constructor(public httpClient: HttpClient) {
-
   }
-
   create_cluster(clusterName: string) {
     return this.httpClient.post <number>(environment.baseUrl + '/profiling-data/create-cluster', {"clusterName": clusterName}, {
       headers: {
-        Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
+        Authorization: 'Basic ' + this.auth
       }
     })
   }
@@ -30,7 +27,7 @@ export class UploadFilesService {
 
     return this.httpClient.post<FormData>(environment.baseUrl + '/UploadCSV', temp , {
       headers: {
-        Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
+        Authorization: 'Basic ' +  this.auth
       }
     })
   }
