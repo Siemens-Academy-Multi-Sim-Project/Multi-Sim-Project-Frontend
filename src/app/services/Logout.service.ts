@@ -7,11 +7,10 @@ import { Router } from '@angular/router';
 export class LogoutService {
 
 constructor(private router: Router) { }
-
-
 public logout(){
-  localStorage.removeItem('Email');
-  localStorage.removeItem('Password');
+
+  localStorage.removeItem('auth');
+  localStorage.clear();
 
   this.router.navigate(['/profiling-data-list']);
 

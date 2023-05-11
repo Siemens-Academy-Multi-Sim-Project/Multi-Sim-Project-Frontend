@@ -11,7 +11,6 @@ constructor(private http: HttpClient,private router: Router) { }
 url!:string
 register(fName: string,lName:string ,mail:string , pword:string){
 this.url="http://localhost:8080/api/v1/registration";
-console.log("hello ",fName,"  ",pword);
 
 const body = {
   "firstName": fName,
@@ -24,7 +23,6 @@ const body = {
     "Content-Type": "application/json"
   }
 }).subscribe(response => {
-  console.log(response);
 },
 error => {
   if(error.status==200){

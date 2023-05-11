@@ -22,7 +22,6 @@ export class LoginComponent {
     password: ['',[Validators.required,Validators.minLength(8)]]
   });
   submit(){
-
     this.email=this.loginForm.get('email')?.value;
     this.password=this.loginForm.get('password')?.value;
     this.valid=this.loginService.login(this.email, this.password);

@@ -10,8 +10,8 @@ import { environment } from 'src/environments/environment';
 export class ProfilingDataListService {
 
 
-  username = localStorage.getItem('Email');
-  password = localStorage.getItem('Password');
+  auth = localStorage.getItem('Auth');
+
 
   profilingDataClustersArray: DataCluster[] = []
   constructor(private http: HttpClient) {
@@ -20,7 +20,7 @@ export class ProfilingDataListService {
   getClustersData() {
     return this.http.get<DataCluster[]>(environment.baseUrl + `/profiling-data-clusters/all`, {
       headers: {
-        Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
+        Authorization: 'Basic ' + this.auth
       }
     })
   }
