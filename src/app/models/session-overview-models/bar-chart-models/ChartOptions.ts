@@ -96,7 +96,7 @@ export class TreeMapChartOptions {
 }
 
 function createToolTip(files: string[]): string {
-    return `<p>Appeared in ${files.length} simulations<br>
+    return `<p>Appeared in ${files.length} simulation(s)<br>
         ${files.join("<br>")}</p>
     `
 }

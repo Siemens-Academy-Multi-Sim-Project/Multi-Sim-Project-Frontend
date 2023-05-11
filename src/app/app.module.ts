@@ -19,7 +19,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDividerModule} from '@angular/material/divider';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import {ProfilingDataListService} from './services/profiling-data-list-service/profiling-data-list.service'
-import {NgxPaginationModule} from 'ngx-pagination'
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component'
 
 
 
@@ -35,6 +36,7 @@ import {NgxPaginationModule} from 'ngx-pagination'
     UploadFileComponent,
     HeatMapComponent,
     UsageProfileTableComponent,
+    ToggleButtonComponent,
   ],
   imports: [
     BrowserModule,

@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@
 import { ChartComponent } from 'ng-apexcharts';
 import { TreeMapChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
 import { HeatMapEntry } from 'src/app/models/session-overview-models/profiling-data/HeatMapEntry';
+import { HeatMapService } from 'src/app/services/overview-service/heat-map-service/heat-map.service';
 import { OverviewService } from 'src/app/services/overview-service/overview.service';
 
 
@@ -19,6 +20,7 @@ export class HeatMapComponent implements OnInit, OnChanges {
     public chartOptions!: TreeMapChartOptions;
 
     @Input() heatMapEntries: HeatMapEntry[] = []
+    showSystemCalls: boolean = false
 
     ngOnInit(): void {
         this.renderGraph()
@@ -26,7 +28,33 @@ export class HeatMapComponent implements OnInit, OnChanges {
     ngOnChanges(changes: SimpleChanges): void {
         this.renderGraph()
     }
+
+    toggleShowingSystemCalls(show: boolean){
+        this.showSystemCalls = show;
+        this.renderGraph()
+    }
+
+    getTop20Du(showSystemCalls: boolean = false): HeatMapEntry[]{
+        let returnedDu: HeatMapEntry[] = []
+        this.heatMapEntries = this.heatMapEntries.sort((a, b) => b.localHitsPercentage - a.localHitsPercentage)
+        
+        let addedDesignUnits = 0
+        for(let i = 0; i < this.heatMapEntries.length; i++){
+            let entry = this.heatMapEntries[i]
+            if(!showSystemCalls && entry.isSystemCall()) continue;
+
+            returnedDu.push(entry);
+            addedDesignUnits++;
+            if(addedDesignUnits == HeatMapService.DESIGN_UNIT_LIMIT){
+                return returnedDu;
+            }
+        }
+        return returnedDu;
+    }
+
+
     renderGraph() {
-        this.chartOptions = TreeMapChartOptions.createTreeMapChartOptions(this.heatMapEntries)    
+        let du = this.getTop20Du(this.showSystemCalls)
+        this.chartOptions = TreeMapChartOptions.createTreeMapChartOptions(du)    
     }
 }

@@ -7,6 +7,8 @@ import { ListUtils } from 'src/app/shared/utils/ListUtils';
     providedIn: 'root'
 })
 export class HeatMapService {
+    static DESIGN_UNIT_LIMIT = 20
+
     private getDuLocalHitsData(profilingDataArray: ProfilingData[]): Map<string, number> {
         let duLocalHits: Map<string, number> = new Map<string, number>();
         let localHitsSum: number = 0;
@@ -53,17 +55,17 @@ export class HeatMapService {
         let avgPercentageMap = this.getDuAvgHitPercentage(profilingData)
         let filesPerDuMap = this.getFilesPerDu(profilingData);
 
-        localHitsMap.forEach((value, key) => {
-            let newEntry: HeatMapEntry = {
-                name: key, 
-                localHitsPercentage: value, 
-                avgPercentage: avgPercentageMap.get(key) || 0, 
-                appearedIn: filesPerDuMap.get(key) || []
-            }
+        localHitsMap.forEach((localHits, designUnitName) => {
+            let newEntry = new HeatMapEntry (
+                designUnitName, 
+                localHits, 
+                avgPercentageMap.get(designUnitName) || 0, 
+                filesPerDuMap.get(designUnitName) || []
+            )
             entries.push(newEntry)
         })
 
-        return entries 
+        return entries
     }
 
     private getFilesPerDu(profilingData: ProfilingData[]): Map<string, string[]> {
