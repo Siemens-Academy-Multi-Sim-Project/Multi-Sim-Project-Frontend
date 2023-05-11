@@ -20,8 +20,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import {ProfilingDataListService} from './services/profiling-data-list-service/profiling-data-list.service'
 import {NgxPaginationModule} from 'ngx-pagination';
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoComponent } from './components/logo/logo.component'
+
+import { ToggleButtonComponent } from './toggle-button/toggle-button.component'
+
 
 
 
@@ -37,8 +41,12 @@ import { LogoComponent } from './components/logo/logo.component'
     UploadFileComponent,
     HeatMapComponent,
     UsageProfileTableComponent,
+
     NavbarComponent,
     LogoComponent,
+
+    ToggleButtonComponent,
+
   ],
   imports: [
     BrowserModule,
