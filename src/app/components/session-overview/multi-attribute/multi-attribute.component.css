@@ -9,6 +9,7 @@
 }
 .content{
   color: white;
+  height: inherit;
   font-size: 15px;
   text-align: center;
   margin-top: 2px;

@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 export class ProfilingDataListService {
 
 
+
   auth = localStorage.getItem('Auth');
 
 

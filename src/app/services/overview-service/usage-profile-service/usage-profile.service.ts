@@ -14,7 +14,9 @@ export class UsageProfileService {
     let cols: Columns[] = []
     for (let i = 0; i < profilingDataArray.length; i++) {
       let calls_unit_data = new UnitData(profilingDataArray[i].randomizeCall)
-
+      if (isNaN(calls_unit_data.value)){
+        calls_unit_data.value=0
+      }
       let col: Columns = {
         file_name: profilingDataArray[i].fileName,
         design_type: profilingDataArray[i].designType,
