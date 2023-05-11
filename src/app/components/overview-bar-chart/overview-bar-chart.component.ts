@@ -31,9 +31,9 @@ export class OverviewBarChartComponent implements OnInit, OnChanges {
     }
     getCurrentlySelectedTestData(): number[]{
         switch (this.selectedGraphingChoice) {
-            case this.graphingChoices[1]:
+            case this.graphingChoices[0]:
                 return this.vsimTimes
-            case this.graphingChoices[2]:
+            case this.graphingChoices[1]:
                 return this.voptMemories
             default:
                 return this.vsimMemories
