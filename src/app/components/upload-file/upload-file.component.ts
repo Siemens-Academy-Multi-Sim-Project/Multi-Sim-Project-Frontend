@@ -32,6 +32,7 @@ export class UploadFileComponent implements OnInit {
   finishedUploading: number = 0
   profilingDataClusters:DataCluster[] = [];
   faFile = faFile;
+  flag=0
 
   constructor(
     private formBuilder: FormBuilder,

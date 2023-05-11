@@ -29,7 +29,7 @@ export class LoginComponent {
 
     if(this.valid==true){
       this.errorMessage=false;
-      this.router.navigate(['/profiling-data-list']);
+      this.router.navigate(['/upload-file']);
     }
     else{
      // this.errorMessage=true;
