@@ -1,97 +1,74 @@
-import { AfterContentChecked, ChangeDetectorRef, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
-import { HttpClient, HttpEventType } from '@angular/common/http';
-import { UploadFilesService } from 'src/app/services/upload-file-service/upload-files.service';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { Route, Router } from '@angular/router';
-
-declare type UploadState = "Idle" | "Uploading" | "Done"
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
+import {HttpClient, HttpEventType} from '@angular/common/http';
+import {UploadFilesService} from 'src/app/services/upload-file-service/upload-files.service';
+import { DataCluster } from 'src/app/models/session-overview-models/profiling-data/DataCluster';
+import { ProfilingDataListService } from 'src/app/services/profiling-data-list-service/profiling-data-list.service';
+import {faFile} from '@fortawesome/free-solid-svg-icons'
 
 @Component({
   selector: 'app-upload-file',
   templateUrl: './upload-file.component.html',
-  styleUrls: ['./upload-file.component.css']
+  styleUrls: ['./upload-file.component.css'], encapsulation: ViewEncapsulation.None,
 })
 export class UploadFileComponent implements OnInit {
 
   fileUploadForm!: FormGroup;
+  selectedFiles: File[] = [];
   clusterName: string = "";
-  filesStates: Map<string, UploadState> = new Map<string, UploadState>()
-  files: Map<string, File> = new Map<string, File>()
+  profilingDataClusters:DataCluster[] = [];
+  can_attach: boolean = false;
+  faFile = faFile;
+  constructor(private formBuilder: FormBuilder, private uploadFile: UploadFilesService,private clusterService:ProfilingDataListService) {
+    clusterService.getClustersData().subscribe((data) => {
+      console.log(data);
+      this.clusterService.setClusterData(data);
+      // console.log(this.clusterService.profilingDataClustersArray);
+      this.clusterService.profilingDataClustersArray.forEach((data) => {
+        this.profilingDataClusters.push(data)
+      })
+    })
 
-  Idle: UploadState = "Idle"
-  Uploading: UploadState = "Uploading"
-  Done: UploadState = "Done"
-
-  canRediretLiveData: BehaviorSubject<Boolean> = new BehaviorSubject<Boolean>(false)
-  createdClusterId!: number
-
-  finishedUploading: number = 0
-  
-
-  constructor(
-    private formBuilder: FormBuilder,
-    private uploadFile: UploadFilesService,
-    private router: Router
-  ) {}
+  }
 
   ngOnInit() {
     this.fileUploadForm = this.formBuilder.group({
       file: [''],
       clusterName: ['']
     });
-
-    this.canRediretLiveData.subscribe((canRedirect) => {
-      if(canRedirect){
-        this.router.navigate([
-          "session-overview"
-        ], {
-          queryParams:{clusterId: this.createdClusterId}
-        })
-      }
-    })
   }
 
-  onClusterCreated(){
-    this.files.forEach((file, name) => {
-      this.filesStates.set(name, "Uploading")
-      this.uploadFile.uploadFile(this.clusterName, file)
-        .subscribe(() => {
-          this.filesStates.set(name, "Done")
-          this.finishedUploading++
 
-          this.canRediretLiveData.next(
-            this.finishedUploading === this.files.size
-          )
-        })
-    })
-  }
-
-  onSubmit() {
+  async send_files() {
+    const formData = new FormData();
+    const files = this.selectedFiles;
     this.clusterName = this.fileUploadForm.get('clusterName')?.value;
     if (this.clusterName == "") {
       alert("Please enter a cluster name");
       return;
     }
-    if (this.files.size === 0) {
+    if (files.length === 0) {
       alert("Please select a file");
       return;
     }
-    this.uploadFile.create_cluster(this.clusterName)
-      .subscribe((newId) => { 
-        this.createdClusterId = newId
-        this.onClusterCreated() 
-      })
+    if (files && files.length > 0) {
+      formData.append('ClusterName', this.clusterName);
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        console.log(file);
+        formData.append('file', file);
+      }
+      this.uploadFile.handle_files(formData);
 
+    }
+    console.log(this.clusterName);
   }
 
-
   clearSelectedFiles() {
-    this.filesStates.clear();
-    this.files.clear();
+    this.selectedFiles = [];
     this.fileUploadForm.get('file')?.setValue(null);
+    this.can_attach = false;
     this.clusterName = "";
-    this.finishedUploading = 0
   }
 
   onFileSelect(event: Event) {
@@ -100,16 +77,14 @@ export class UploadFileComponent implements OnInit {
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        this.filesStates.set(file.name, "Idle")
-        this.files.set(file.name, file)
+        this.selectedFiles.push(file);
       }
       this.fileUploadForm.get('file')?.setValue(null);
     }
   }
 
-  removeSelectedFileMap(name: string) {
-    this.files.delete(name)
-    this.filesStates.delete(name)
+  removeSelectedFile(index: number) {
+    this.selectedFiles.splice(index, 1);
   }
 
 }
