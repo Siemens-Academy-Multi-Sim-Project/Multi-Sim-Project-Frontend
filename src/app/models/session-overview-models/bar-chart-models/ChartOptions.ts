@@ -48,6 +48,7 @@ export class TreeMapChartOptions {
     dataLabels!: ApexDataLabels;
     title!: ApexTitleSubtitle;
     legend!: ApexLegend;
+    tooltip!: ApexTooltip
 
     static createTreeMapChartOptions(localHits: Map<string, number>, avgPercentages: Map<string, number>): TreeMapChartOptions {
         let dataSeries: { x: string, y: number, fillColor: string }[] = []
@@ -62,10 +63,11 @@ export class TreeMapChartOptions {
 
         return {
             series: [
-                { data: dataSeries }
+                { data: dataSeries },
+
             ],
             legend: {
-                show: false,
+                show: true,
             },
             chart: {
                 height: 387,
@@ -78,8 +80,21 @@ export class TreeMapChartOptions {
             },
             dataLabels: {
                 enabled: true,
-                offsetY: -3,
-            }
+                offsetY: -3
+            },
+            tooltip: {
+                enabled: true,
+                custom: function({series, seriesIndex, dataPointIndex, w}) {
+                  
+                  return '<ul>' +
+                  '<li><b>Price</b>: ' + 14 + '</li>' +
+                  '<li><b>Number</b>: ' + 14 + '</li>' +
+                  '<li><b>Product</b>: \'' + 5234 + '\'</li>' +
+                  '<li><b>Info</b>: \'' + 321 + '\'</li>' +
+                  '<li><b>Site</b>: \'' + 53 + '\'</li>' +
+                  '</ul>';
+                }
+              }
         };
     }
 }
