@@ -9,8 +9,8 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfilingDataListService {
 
-  username = "email@email.com"
-  password = "1234";
+  username = "sara@g.com"
+  password = "12345";
   profilingDataClustersArray: DataCluster[] = []
   constructor(private http: HttpClient) {
   }

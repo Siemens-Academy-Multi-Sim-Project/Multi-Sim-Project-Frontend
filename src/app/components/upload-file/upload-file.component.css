@@ -1,4 +1,4 @@
-.upload-file-container {
+.container {
   max-width: 500px;
   margin: 0 auto;
   padding: 20px;
@@ -54,18 +54,4 @@ li {
 .form-control-file{
   align-content: center;
   justify-content: center;
-}
-.title-container{
-  font-size:1.2rem;
-}
-.no-data-label-container{
-  color: white;
-  font-size: 0.9rem;
-  margin-left: 4%;
-}
-.file-icon-container{
-  margin-right: 2%;
-}
-.list-group{
-  border-radius: 0;
 }

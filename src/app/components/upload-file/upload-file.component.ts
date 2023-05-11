@@ -2,9 +2,7 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder} from '@angular/forms';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {UploadFilesService} from 'src/app/services/upload-file-service/upload-files.service';
-import { DataCluster } from 'src/app/models/session-overview-models/profiling-data/DataCluster';
-import { ProfilingDataListService } from 'src/app/services/profiling-data-list-service/profiling-data-list.service';
-import {faFile} from '@fortawesome/free-solid-svg-icons'
+
 
 @Component({
   selector: 'app-upload-file',
@@ -16,18 +14,11 @@ export class UploadFileComponent implements OnInit {
   fileUploadForm!: FormGroup;
   selectedFiles: File[] = [];
   clusterName: string = "";
-  profilingDataClusters:DataCluster[] = [];
+
   can_attach: boolean = false;
-  faFile = faFile;
-  constructor(private formBuilder: FormBuilder, private uploadFile: UploadFilesService,private clusterService:ProfilingDataListService) {
-    clusterService.getClustersData().subscribe((data) => {
-      console.log(data);
-      this.clusterService.setClusterData(data);
-      // console.log(this.clusterService.profilingDataClustersArray);
-      this.clusterService.profilingDataClustersArray.forEach((data) => {
-        this.profilingDataClusters.push(data)
-      })
-    })
+
+  constructor(private formBuilder: FormBuilder, private uploadFile: UploadFilesService) {
+
 
   }
 
