@@ -9,6 +9,7 @@ import {
     ApexLegend,
     ApexTooltip
 } from "ng-apexcharts";
+import { HeatMapEntry } from "../profiling-data/HeatMapEntry";
 
 export class BarChartOptions {
     series!: ApexAxisChartSeries;
@@ -48,24 +49,27 @@ export class TreeMapChartOptions {
     dataLabels!: ApexDataLabels;
     title!: ApexTitleSubtitle;
     legend!: ApexLegend;
+    tooltip!: ApexTooltip;
 
-    static createTreeMapChartOptions(localHits: Map<string, number>, avgPercentages: Map<string, number>): TreeMapChartOptions {
-        let dataSeries: { x: string, y: number, fillColor: string }[] = []
+    static createTreeMapChartOptions(entries: HeatMapEntry[]): TreeMapChartOptions {
+        let dataSeries: { x: string, y: number, fillColor: string, filesAppearedIn: string[] }[] = []
 
-        localHits.forEach((value, key) => {
+        entries.forEach((entry) => {
             dataSeries.push({
-                x: key,
-                y: value,
-                fillColor: mapNumbersToColors(avgPercentages.get(key))
+                x: entry.name,
+                y: entry.localHitsPercentage,
+                fillColor: mapNumbersToColors(entry.avgPercentage),
+                filesAppearedIn: entry.appearedIn
             })
         })
 
         return {
             series: [
-                { data: dataSeries }
+                { data: dataSeries },
+
             ],
             legend: {
-                show: false,
+                show: true,
             },
             chart: {
                 height: 387,
@@ -78,10 +82,23 @@ export class TreeMapChartOptions {
             },
             dataLabels: {
                 enabled: true,
-                offsetY: -3,
-            }
+                offsetY: -3
+            },
+            tooltip: {
+            
+                custom: function ({ seriesIndex, dataPointIndex, w }) {
+                    var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                    return createToolTip(data.filesAppearedIn);
+                }
+            },
         };
     }
+}
+
+function createToolTip(files: string[]): string {
+    return `<p>Appeared in ${files.length} simulations<br>
+        ${files.join("<br>")}</p>
+    `
 }
 
 function mapNumbersToColors(num: number | undefined): string {
