@@ -10,6 +10,7 @@ import { BarChartService } from './bar-chart-service/bar-chart.service';
 import { HeatMapService } from './heat-map-service/heat-map.service';
 import { TopOverviewService } from './top-overview-service/top-overview.service';
 import { UsageProfileService } from './usage-profile-service/usage-profile.service';
+import { HeatMapEntry } from 'src/app/models/session-overview-models/profiling-data/HeatMapEntry';
 
 @Injectable({
   providedIn: 'root'
@@ -89,12 +90,7 @@ export class OverviewService {
     return this.usageProfileService.getUsageProfilingData(this.profilingDataArray)
   }
 
-  getDuLocalHitsData(): Map<string, number> {
-    return this.heatMapService.getDuLocalHitsData(this.profilingDataArray)
-  }
-
-
-  getDuAvgHitPercentage(): Map<string, number> {
-    return this.heatMapService.getDuAvgHitPercentage(this.profilingDataArray)
+  getHeatMapEntries(): HeatMapEntry[]{
+    return this.heatMapService.getHeatMapEntries(this.profilingDataArray)
   }
 }

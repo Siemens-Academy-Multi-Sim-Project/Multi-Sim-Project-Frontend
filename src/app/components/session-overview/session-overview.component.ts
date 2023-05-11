@@ -6,6 +6,7 @@ import {OverviewService} from 'src/app/services/overview-service/overview.servic
 import {ActivatedRoute, Router} from '@angular/router';
 import {Columns} from "../../models/usage-profile/columns";
 import {MatTableDataSource} from "@angular/material/table";
+import { HeatMapEntry } from 'src/app/models/session-overview-models/profiling-data/HeatMapEntry';
 
 @Component({
   selector: 'app-session-overview',
@@ -36,8 +37,7 @@ export class SessionOverviewComponent {
       this.vsimMemories = this.service.getVsimMemory();
       this.usageProfileData = this.service.getUsageProfilingData();
       this.table_data = new MatTableDataSource<Columns>(this.usageProfileData);
-      this.duHits = this.service.getDuLocalHitsData()
-      this.duAvgPercentages = this.service.getDuAvgHitPercentage()
+      this.heatMapEntries = this.service.getHeatMapEntries()
     })
   }
 
@@ -52,6 +52,5 @@ export class SessionOverviewComponent {
   public vsimMemories: number[] = [];
   public voptMemories: number[] = [];
 
-  duHits: Map<string,  number> = new Map<string, number>();
-  duAvgPercentages:Map<string,  number> = new Map<string, number>();
+  heatMapEntries: HeatMapEntry[] = []
 }

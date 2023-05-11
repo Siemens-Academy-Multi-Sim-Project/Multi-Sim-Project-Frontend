@@ -9,6 +9,7 @@ import {
     ApexLegend,
     ApexTooltip
 } from "ng-apexcharts";
+import { HeatMapEntry } from "../profiling-data/HeatMapEntry";
 
 export class BarChartOptions {
     series!: ApexAxisChartSeries;
@@ -48,16 +49,17 @@ export class TreeMapChartOptions {
     dataLabels!: ApexDataLabels;
     title!: ApexTitleSubtitle;
     legend!: ApexLegend;
-    tooltip!: ApexTooltip
+    tooltip!: ApexTooltip;
 
-    static createTreeMapChartOptions(localHits: Map<string, number>, avgPercentages: Map<string, number>): TreeMapChartOptions {
-        let dataSeries: { x: string, y: number, fillColor: string }[] = []
+    static createTreeMapChartOptions(entries: HeatMapEntry[]): TreeMapChartOptions {
+        let dataSeries: { x: string, y: number, fillColor: string, filesAppearedIn: string[] }[] = []
 
-        localHits.forEach((value, key) => {
+        entries.forEach((entry) => {
             dataSeries.push({
-                x: key,
-                y: value,
-                fillColor: mapNumbersToColors(avgPercentages.get(key))
+                x: entry.name,
+                y: entry.localHitsPercentage,
+                fillColor: mapNumbersToColors(entry.avgPercentage),
+                filesAppearedIn: entry.appearedIn
             })
         })
 
@@ -83,20 +85,20 @@ export class TreeMapChartOptions {
                 offsetY: -3
             },
             tooltip: {
-                enabled: true,
-                custom: function({series, seriesIndex, dataPointIndex, w}) {
-                  
-                  return '<ul>' +
-                  '<li><b>Price</b>: ' + 14 + '</li>' +
-                  '<li><b>Number</b>: ' + 14 + '</li>' +
-                  '<li><b>Product</b>: \'' + 5234 + '\'</li>' +
-                  '<li><b>Info</b>: \'' + 321 + '\'</li>' +
-                  '<li><b>Site</b>: \'' + 53 + '\'</li>' +
-                  '</ul>';
+            
+                custom: function ({ seriesIndex, dataPointIndex, w }) {
+                    var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
+                    return createToolTip(data.filesAppearedIn);
                 }
-              }
+            },
         };
     }
+}
+
+function createToolTip(files: string[]): string {
+    return `<p>Appeared in ${files.length} simulations<br>
+        ${files.join("<br>")}</p>
+    `
 }
 
 function mapNumbersToColors(num: number | undefined): string {
