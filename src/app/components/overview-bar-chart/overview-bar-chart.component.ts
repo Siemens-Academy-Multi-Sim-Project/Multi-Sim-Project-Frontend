@@ -24,9 +24,23 @@ export class OverviewBarChartComponent implements OnInit, OnChanges {
   binStrategy: GroupingStrategy[] = ["Tight Grouping", "Moderate Grouping", "Loose Grouping", "No Grouping"]
   selectedBinStrategy: GroupingStrategy = "Tight Grouping"
 
-  ngOnInit(): void {
-    this.renderGraph()
-  }
+
+    ngOnInit(): void {
+        this.renderGraph()
+    }
+    ngOnChanges(changes: SimpleChanges): void {
+        this.renderGraph()
+    }
+    getCurrentlySelectedTestData(): number[]{
+        switch (this.selectedGraphingChoice) {
+            case this.graphingChoices[0]:
+                return this.vsimTimes
+            case this.graphingChoices[1]:
+                return this.voptMemories
+            default:
+                return this.vsimMemories
+        }
+    }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.renderGraph()

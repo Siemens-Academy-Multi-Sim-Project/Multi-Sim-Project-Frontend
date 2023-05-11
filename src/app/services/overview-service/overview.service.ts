@@ -19,8 +19,8 @@ import { UsageProfileService } from './usage-profile-service/usage-profile.servi
 export class OverviewService {
 
 
-  username = "omar.atef.2001@gmail.com"
-  password = "1010abab";
+  auth = localStorage.getItem('Auth');
+
 
   profilingDataArray: ProfilingData[] = []
 
@@ -31,11 +31,10 @@ export class OverviewService {
     private topOverviewService: TopOverviewService,
     private usageProfileService: UsageProfileService
   ) { }
-
   getClusterById(id: string) {
     return this.http.get<ProfilingData[]>(environment.baseUrl + `/profiling-data-clusters/getProfilingData/${id}`, {
       headers: {
-        Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
+        Authorization: 'Basic ' + this.auth
       }
     })
   }

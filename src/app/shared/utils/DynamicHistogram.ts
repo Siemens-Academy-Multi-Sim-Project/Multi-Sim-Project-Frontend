@@ -47,7 +47,7 @@ export function groupData(data: number[], strategy: GroupingStrategy = "Tight Gr
     let labels: string[] = []
 
     for (let i = 0; i < sortedData.length; i++) {
-        if (sortedData[i] > rangeStart && sortedData[i] < rangeEnd) {
+        if (sortedData[i] >= rangeStart && sortedData[i] <= rangeEnd) {
             points[currentBin].push(sortedData[i]);
         } else {
             currentBin++;
