@@ -33,7 +33,7 @@ export class LoginComponent {
       this.router.navigate(['/profiling-data-list']);
     }
     else{
-      this.errorMessage=true;
+     // this.errorMessage=true;
       throw new Error('Incorrect username or password');
     }
   }

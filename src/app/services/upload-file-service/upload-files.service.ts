@@ -8,11 +8,10 @@ import {formatDate} from "@angular/common";
 })
 export class UploadFilesService {
 
-  username = "awadafif77777@gmail.com";
-  password = "password";
+  username = localStorage.getItem('Email');
+  password = localStorage.getItem('Password');
 
   constructor(public httpClient: HttpClient) {
-
   }
 
   create_cluster(clusterName: string) {

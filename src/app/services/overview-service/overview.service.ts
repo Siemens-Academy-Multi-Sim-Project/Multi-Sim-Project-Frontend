@@ -19,8 +19,8 @@ import { UsageProfileService } from './usage-profile-service/usage-profile.servi
 export class OverviewService {
 
 
-  username = "awadafif77777@gmail.com";
-  password = "password";
+  username = localStorage.getItem('Email');
+  password = localStorage.getItem('Password');
 
   profilingDataArray: ProfilingData[] = []
 

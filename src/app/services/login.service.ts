@@ -27,8 +27,8 @@ export class LoginService {
       error => {
         if(error.status==200){
           console.log('Login succeeded:', error);
-          localStorage.setItem("Email: ", username);
-          localStorage.setItem("Password: ",password);
+          localStorage.setItem("Email", username);
+          localStorage.setItem("Password",password);
           this.valid=true;
           console.log('this.valid from if serviceee', this.valid);
           this.router.navigate(['/profiling-data-list']);
@@ -37,6 +37,7 @@ export class LoginService {
         else{
           console.log('Login failed:', error);
           this.valid=false;
+          alert("Wrong username or password");
           return this.valid;
         }
         // Display an error message or something

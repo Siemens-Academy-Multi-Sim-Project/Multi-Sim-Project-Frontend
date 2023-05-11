@@ -9,8 +9,10 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfilingDataListService {
 
-  username = "awadafif77777@gmail.com";
-  password = "password";
+
+  username = localStorage.getItem('Email');
+  password = localStorage.getItem('Password');
+
   profilingDataClustersArray: DataCluster[] = []
   constructor(private http: HttpClient) {
   }
@@ -28,5 +30,5 @@ export class ProfilingDataListService {
 
 
 
-  
+
 }

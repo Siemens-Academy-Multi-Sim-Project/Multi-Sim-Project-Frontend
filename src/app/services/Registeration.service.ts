@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 export class RegisterationService {
 
 constructor(private http: HttpClient,private router: Router) { }
-
 url!:string
 register(fName: string,lName:string ,mail:string , pword:string){
 this.url="http://localhost:8080/api/v1/registration";
@@ -35,13 +34,11 @@ error => {
   }
   else{
     alert("Registeration faild");
-
     this.router.navigate(['/signUp']);
 
   }
   // Display an error message or something
 })
-
 }
 
 
