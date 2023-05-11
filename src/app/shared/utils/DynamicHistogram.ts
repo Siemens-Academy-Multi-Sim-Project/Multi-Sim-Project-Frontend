@@ -1,3 +1,5 @@
+import { ListUtils } from "./ListUtils";
+
 export declare type GroupingStrategy = "Tight Grouping" | "Moderate Grouping" | "Loose Grouping" | "No Grouping";
 
 function getThreshold(strategy: GroupingStrategy): number {
@@ -23,15 +25,18 @@ function makeSimpleHistogram(data: number[]): [string[], number[]] {
 }
 
 export function groupData(data: number[], strategy: GroupingStrategy = "Tight Grouping"): [string[], number[]] {
+    if(data.length === 0) return [[], []]
     let sortedData = [...data].sort(((a, b) => a-b))
+
 
     if (strategy === "No Grouping") {
         return makeSimpleHistogram(sortedData)
     }
 
-    let avg = averageOf(sortedData);
+    let avg = ListUtils.getAverage(sortedData);
     let threshold = avg * getThreshold(strategy)
     console.log(threshold);
+    if(threshold === 0) return [[], []]
     
 
     let rangeStart = 0;
@@ -42,7 +47,7 @@ export function groupData(data: number[], strategy: GroupingStrategy = "Tight Gr
     let labels: string[] = []
 
     for (let i = 0; i < sortedData.length; i++) {
-        if (sortedData[i] > rangeStart && sortedData[i] < rangeEnd) {
+        if (sortedData[i] >= rangeStart && sortedData[i] <= rangeEnd) {
             points[currentBin].push(sortedData[i]);
         } else {
             currentBin++;
@@ -86,13 +91,4 @@ export function groupData(data: number[], strategy: GroupingStrategy = "Tight Gr
         labels,
         points.map((bin) => bin.length)
     ]
-}
-
-function averageOf(data: number[]) {
-    let sum = 0;
-    for (let i = 1; i < data.length; i++) {
-        sum += data[i];
-    }
-    let avg = Math.ceil(sum / data.length);
-    return avg;
 }
