@@ -42,21 +42,6 @@ export class OverviewBarChartComponent implements OnInit, OnChanges {
         }
     }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    this.renderGraph()
-  }
-
-  getCurrentlySelectedTestData(): number[] {
-    switch (this.selectedGraphingChoice) {
-      case this.graphingChoices[1]:
-        return this.vsimTimes
-      case this.graphingChoices[2]:
-        return this.voptMemories
-      default:
-        return this.vsimMemories
-    }
-  }
-
   onGraphingDataChanged(): void {
     this.renderGraph();
   }
