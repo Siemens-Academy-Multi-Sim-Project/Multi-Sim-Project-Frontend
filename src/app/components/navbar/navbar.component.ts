@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import {LogoutService} from 'src/app/services/Logout.service'
 
 @Component({
   selector: 'app-navbar',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-
+  @Input() homePage:boolean=true;
+  userName=localStorage.getItem("Email");
+  constructor(private logoutService: LogoutService) {}
+  onLogOut(){
+    this.logoutService.logout();
+  }
 }

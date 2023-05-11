@@ -9,14 +9,14 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfilingDataListService {
 
-  username = "sara@g.com"
-  password = "12345";
+  username = "email@email.com"
+  password = "1234";
   profilingDataClustersArray: DataCluster[] = []
   constructor(private http: HttpClient) {
   }
 
   getClustersData() {
-    return this.http.get<DataCluster[]>(environment.baseUrl + `/profiling-data-clusters/all`, {
+    return this.http.get<DataCluster[]>(environment.baseUrl + `/GetRecentClusters`, {
       headers: {
         Authorization: 'Basic ' + btoa(this.username + ':' + this.password)
       }

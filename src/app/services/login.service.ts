@@ -27,6 +27,7 @@ export class LoginService {
         if(error.status==200){
           localStorage.clear();
           localStorage.setItem("Auth", btoa(username + ':' +password));
+          localStorage.setItem("Email",username);
           this.valid=true;
           this.router.navigate(['/profiling-data-list']);
           return this.valid;
