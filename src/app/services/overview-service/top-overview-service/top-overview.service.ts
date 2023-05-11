@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
-import { DualAttribute } from 'src/app/models/session-overview-models/dual-attribute';
-import { MultiAttribute } from 'src/app/models/session-overview-models/multiAttribute';
-import { ProfilingData } from 'src/app/models/session-overview-models/profiling-data/ProfilingData';
-import { UnitData } from 'src/app/models/session-overview-models/profiling-data/UnitData';
-import { SingleAttribute } from 'src/app/models/session-overview-models/singleAttribute';
-import { ListUtils } from 'src/app/shared/utils/ListUtils';
+import {Injectable} from '@angular/core';
+import {DualAttribute} from 'src/app/models/session-overview-models/dual-attribute';
+import {MultiAttribute} from 'src/app/models/session-overview-models/multiAttribute';
+import {ProfilingData} from 'src/app/models/session-overview-models/profiling-data/ProfilingData';
+import {UnitData} from 'src/app/models/session-overview-models/profiling-data/UnitData';
+import {SingleAttribute} from 'src/app/models/session-overview-models/singleAttribute';
+import {ListUtils} from 'src/app/shared/utils/ListUtils';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopOverviewService {
-  constructor() { }
+  constructor() {
+  }
 
   getTotalSimulations(profilingDataArray: ProfilingData[]): SingleAttribute {
     return {count: profilingDataArray.length, type: "Simulations"}
@@ -34,6 +35,8 @@ export class TopOverviewService {
       voptTimes.push(unitData.value)
     })
 
+    let measuring_unit = profilingDataArray[0].voptTime.split(" ")
+
     voptTimes.sort();
 
     return {
@@ -43,7 +46,7 @@ export class TopOverviewService {
       min_name: "Min Vopt Time",
       max_name: "Max Vopt Time",
       avg_name: "Avg Vopt Time",
-      measuring_unit: "sec"
+      measuring_unit: measuring_unit[measuring_unit.length - 1]
     }
   }
 
@@ -55,6 +58,8 @@ export class TopOverviewService {
       vsimTimes.push(unitData.value)
     })
 
+    let measuring_unit = profilingDataArray[0].vsimTime.split(" ")
+
     vsimTimes.sort();
 
     return {
@@ -64,7 +69,7 @@ export class TopOverviewService {
       min_name: "Min Vsim Time",
       max_name: "Max Vsim Time",
       avg_name: "Avg Vsim Time",
-      measuring_unit: "sec"
+      measuring_unit: measuring_unit[measuring_unit.length - 1]
     }
   }
 
@@ -76,6 +81,7 @@ export class TopOverviewService {
       VoptMemory.push(unitData.value)
     })
 
+    let measuring_unit = profilingDataArray[0].voptMemory.split(" ")
     VoptMemory.sort();
 
     return {
@@ -85,7 +91,7 @@ export class TopOverviewService {
       min_name: "Min Vopt Memory",
       max_name: "Max Vopt Memory",
       avg_name: "Avg Vopt Memory",
-      measuring_unit: "GB"
+      measuring_unit: measuring_unit[measuring_unit.length - 1]
     }
   }
 
@@ -98,6 +104,7 @@ export class TopOverviewService {
     })
 
     VsimMemory.sort();
+    let measuring_unit = profilingDataArray[0].vsimMemory.split(" ")
 
     return {
       min: VsimMemory[0],
@@ -106,7 +113,7 @@ export class TopOverviewService {
       min_name: "Min Vsim Memory",
       max_name: "Max Vsim Memory",
       avg_name: "Avg Vsim Memory",
-      measuring_unit: "GB"
+      measuring_unit: measuring_unit[measuring_unit.length - 1]
     }
   }
 
@@ -116,8 +123,12 @@ export class TopOverviewService {
 
     profilingDataArray.forEach((data) => {
       samples += data.totalSamples
-      let calls_unit_data = new UnitData(data.randomizeCall)
-      calls += calls_unit_data.value
+      if (data.randomizeCall == "") {
+        calls += 0;
+      } else {
+        let calls_unit_data = new UnitData(data.randomizeCall)
+        calls += calls_unit_data.value
+      }
     })
 
     return {samples: samples, calls: calls}

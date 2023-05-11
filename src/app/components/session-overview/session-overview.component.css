@@ -30,7 +30,7 @@ h4 {
   display: flex;
   flex-direction: column;
   height: inherit;
-  margin: 10px;
+  margin-left: 4px;
   border-radius: 15px;
 }
 
