@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {LogoutService} from 'src/app/services/Logout.service'
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-navbar',
@@ -7,10 +8,16 @@ import {LogoutService} from 'src/app/services/Logout.service'
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  @Input() homePage:boolean=true;
-  userName=localStorage.getItem("Email");
-  constructor(private logoutService: LogoutService) {}
-  onLogOut(){
+
+  @Input() homePage: boolean = true;
+  userName = localStorage.getItem("Email");
+
+  constructor(private logoutService: LogoutService, private router: Router) {
+  }
+
+  onLogOut() {
+
     this.logoutService.logout();
+    this.router.navigate(['/login']);
   }
 }

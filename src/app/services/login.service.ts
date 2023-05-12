@@ -12,14 +12,14 @@ export class LoginService {
 
   login(username: string, password: string): any{
     this.valid=false;
-    const url = 'http://localhost:8080';
+    const url = 'http://localhost:8080/';
     const headers = new HttpHeaders({
       Authorization: 'Basic ' + btoa(username + ':' + password)
     });
 
     return this.http.get<Response>(url, { headers }).subscribe(
       Response => {
-        this.router.navigate(['/profiling-data-list']);
+        this.router.navigate(['/upload-file']);
         return this.valid=true;
         // Redirect to the home page or some other page
       },
@@ -29,7 +29,7 @@ export class LoginService {
           localStorage.setItem("Auth", btoa(username + ':' +password));
           localStorage.setItem("Email",username);
           this.valid=true;
-          this.router.navigate(['/profiling-data-list']);
+          this.router.navigate(['/upload-file']);
           return this.valid;
         }
         else{
