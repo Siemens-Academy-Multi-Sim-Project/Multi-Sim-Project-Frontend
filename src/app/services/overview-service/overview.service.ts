@@ -11,6 +11,7 @@ import { HeatMapService } from './heat-map-service/heat-map.service';
 import { TopOverviewService } from './top-overview-service/top-overview.service';
 import { UsageProfileService } from './usage-profile-service/usage-profile.service';
 import { HeatMapEntry } from 'src/app/models/session-overview-models/profiling-data/HeatMapEntry';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,9 +21,6 @@ import { HeatMapEntry } from 'src/app/models/session-overview-models/profiling-d
 export class OverviewService {
 
 
-  auth = localStorage.getItem('Auth');
-
-
   profilingDataArray: ProfilingData[] = []
 
   constructor(
@@ -30,12 +28,13 @@ export class OverviewService {
     private barChartService: BarChartService,
     private heatMapService: HeatMapService,
     private topOverviewService: TopOverviewService,
-    private usageProfileService: UsageProfileService
+    private usageProfileService: UsageProfileService,
+    private authService: AuthService
   ) { }
   getClusterById(id: string) {
     return this.http.get<ProfilingData[]>(environment.baseUrl + `/profiling-data-clusters/getProfilingData/${id}`, {
       headers: {
-        Authorization: 'Basic ' + this.auth
+        Authorization: this.authService.getAuthHeader()
       }
     })
   }

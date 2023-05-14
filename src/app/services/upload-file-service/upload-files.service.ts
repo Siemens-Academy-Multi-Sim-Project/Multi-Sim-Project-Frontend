@@ -2,20 +2,22 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEventType} from '@angular/common/http';
 import {environment} from 'src/environments/environment';
 import {formatDate} from "@angular/common";
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadFilesService {
 
-  auth = localStorage.getItem('Auth');
-
-  constructor(public httpClient: HttpClient) {
+  constructor(
+    public httpClient: HttpClient,
+    private authService: AuthService
+  ) {
   }
   create_cluster(clusterName: string) {
     return this.httpClient.post <number>(environment.baseUrl + '/profiling-data/create-cluster', {"clusterName": clusterName}, {
       headers: {
-        Authorization: 'Basic ' + this.auth
+        Authorization: this.authService.getAuthHeader()
       }
     })
   }
@@ -27,7 +29,7 @@ export class UploadFilesService {
 
     return this.httpClient.post<FormData>(environment.baseUrl + '/UploadCSV', temp , {
       headers: {
-        Authorization: 'Basic ' +  this.auth
+        Authorization: this.authService.getAuthHeader()
       }
     })
   }

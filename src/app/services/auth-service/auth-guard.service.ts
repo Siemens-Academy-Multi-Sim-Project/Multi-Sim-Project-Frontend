@@ -1,9 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 export const authGuard = () => {
+  const authService = inject(AuthService)
   const router = inject(Router)
-  if(localStorage.getItem('Auth') == null){
+
+  if(!authService.isLoggedIn()){
     router.navigate(['/login'])
     return false;
   }

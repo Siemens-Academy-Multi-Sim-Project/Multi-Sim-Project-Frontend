@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {LogoutService} from 'src/app/services/Logout.service'
 import {Router} from "@angular/router";
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -10,14 +10,13 @@ import {Router} from "@angular/router";
 export class NavbarComponent {
 
   @Input() homePage: boolean = true;
-  userName = localStorage.getItem("Email");
+  userName = localStorage.getItem(AuthService.EMAIL_COOKIE_KEY);
 
-  constructor(private logoutService: LogoutService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   onLogOut() {
-
-    this.logoutService.logout();
+    this.authService.logOut();
     this.router.navigate(['/login']);
   }
 }

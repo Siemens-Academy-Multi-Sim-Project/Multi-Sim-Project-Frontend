@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {DataCluster} from 'src/app/models/session-overview-models/profiling-data/DataCluster';
 import { environment } from 'src/environments/environment';
+import { AuthService } from '../auth-service/auth.service';
 
 
 @Injectable({
@@ -9,16 +10,14 @@ import { environment } from 'src/environments/environment';
 })
 export class ProfilingDataListService {
 
-  auth = localStorage.getItem('Auth');
-
   profilingDataClustersArray: DataCluster[] = []
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   getClustersData() {
     return this.http.get<DataCluster[]>(environment.baseUrl + `/GetRecentClusters`, {
       headers: {
-        Authorization: 'Basic ' + this.auth
+        Authorization: this.authService.getAuthHeader()
       }
     })
   }
