@@ -6,14 +6,15 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import {SessionOverviewComponent} from './components/session-overview/session-overview.component';
 import { UploadFileComponent } from './components/upload-file/upload-file.component';
 import { ProfilingDataListComponent } from './components/profiling-data-list/profiling-data-list.component';
+import { authGuard } from './services/auth-service/auth-guard.service';
 
 const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: RegisterComponent},
-  {path: 'session-overview', component: SessionOverviewComponent},
-  {path: "upload-file", component: UploadFileComponent},
-  {path: "profiling-data-list", component: ProfilingDataListComponent},
+  {path: 'session-overview', component: SessionOverviewComponent, canActivate: [authGuard]},
+  {path: "upload-file", component: UploadFileComponent, canActivate: [authGuard]},
+  {path: "profiling-data-list", component: ProfilingDataListComponent, canActivate: [authGuard]},
   {path: "**", component: PageNotFoundComponent},
 ];
 
