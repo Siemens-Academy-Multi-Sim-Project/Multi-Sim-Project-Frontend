@@ -23,8 +23,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LogoComponent } from './components/logo/logo.component'
+import { ToggleButtonComponent } from './components/toggle-button/toggle-button.component';
 
-import { ToggleButtonComponent } from './toggle-button/toggle-button.component'
 
 
 

@@ -7,7 +7,8 @@ import {
     ApexDataLabels,
     ApexPlotOptions,
     ApexLegend,
-    ApexTooltip
+    ApexTooltip,
+    ApexNoData
 } from "ng-apexcharts";
 import { HeatMapEntry } from "../profiling-data/HeatMapEntry";
 
@@ -17,6 +18,7 @@ export class BarChartOptions {
     xaxis!: ApexXAxis;
     yaxis!: ApexYAxis;
     title!: ApexTitleSubtitle;
+    noData!: ApexNoData;
 
     static createBarChartOptions(xAxisName: string, xValues: any[], yValues: number[]): BarChartOptions {
         return {
@@ -37,6 +39,10 @@ export class BarChartOptions {
                         color: "#FFFFFF"
                     }
                 }
+            },
+            noData: {
+                text: "No Data",
+                align: "center"
             }
 
         };
@@ -50,16 +56,27 @@ export class TreeMapChartOptions {
     title!: ApexTitleSubtitle;
     legend!: ApexLegend;
     tooltip!: ApexTooltip;
+    noData!: ApexNoData;
 
     static createTreeMapChartOptions(entries: HeatMapEntry[]): TreeMapChartOptions {
-        let dataSeries: { x: string, y: number, fillColor: string, filesAppearedIn: string[] }[] = []
+        let dataSeries: { 
+            x: string, 
+            y: number, 
+            fillColor: string, 
+            heatMapEntry: HeatMapEntry 
+        }[] = []
+        
+        let maxAvgLocalPercentage = 0
+        entries.forEach((entry) => {
+            maxAvgLocalPercentage = Math.max(maxAvgLocalPercentage, entry.avgPercentage)
+        })
 
         entries.forEach((entry) => {
             dataSeries.push({
                 x: entry.name,
                 y: entry.localHitsPercentage,
-                fillColor: mapNumbersToColors(entry.avgPercentage),
-                filesAppearedIn: entry.appearedIn
+                fillColor: mapNumbersToColors(entry.avgPercentage, maxAvgLocalPercentage),
+                heatMapEntry: entry
             })
         })
 
@@ -85,25 +102,45 @@ export class TreeMapChartOptions {
                 offsetY: -3
             },
             tooltip: {
-            
                 custom: function ({ seriesIndex, dataPointIndex, w }) {
                     var data = w.globals.initialSeries[seriesIndex].data[dataPointIndex];
-                    return createToolTip(data.filesAppearedIn);
+                    return createToolTip(data.heatMapEntry);
                 }
             },
+            noData: {
+                text: "No Data",
+                align: "center"
+            }
         };
     }
 }
 
-function createToolTip(files: string[]): string {
-    return `<p>Appeared in ${files.length} simulation(s)<br>
-        ${files.join("<br>")}</p>
+function createToolTip(entry: HeatMapEntry): string {
+    let name = entry.name
+    name = name.replace("<", "&lt;")
+    name = name.replace(">", "&gt;")
+    // FIXME: The only way to get the tooltip to overflow outside the bounds
+    // of the heat map component is to set the position to fixed
+    // but changing the page size messes up the tooltip position
+    return `
+    <div class="card" style="position: fixed;">
+        <div class="card-body">
+            <p class="card-text"><b>DU Name:</b> ${name}</p>
+            <hr style="border-top: 2px solid blue">
+            <p class="card-text"><b>DU Local Hits Percentage:</b> ${(entry.localHitsPercentage * 100).toFixed(2)}%</p>
+            <hr style="border-top: 2px solid blue">
+            <p class="card-text"><b>DU Avg Local Percentage:</b> ${(entry.avgPercentage * 100).toFixed(2)}%</p>
+            <hr style="border-top: 2px solid blue">
+            <p class="card-text">Appeared in ${entry.appearedIn.length} simulation(s)</p>
+            ${entry.appearedIn.join('<br>')}
+        </div>
+    </div>
     `
 }
 
-function mapNumbersToColors(num: number | undefined): string {
-    const [startNum, endNum] = [0, 1];
-    const [startColor, endColor] = ["#FF0000", "#00FF00"];
+function mapNumbersToColors(num: number | undefined, max: number): string {
+    const [startNum, endNum] = [0, max];
+    const [startColor, endColor] = ["#00FF00", "#FF0000"];
 
     if (num == null) return startColor
 
