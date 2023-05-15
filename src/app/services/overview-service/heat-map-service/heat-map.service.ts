@@ -43,7 +43,9 @@ export class HeatMapService {
             })
         })
         localPercentages.forEach((percentages, key) => {
-            avgLocalPercentages.set(key, ListUtils.getAverage(percentages))
+            let avg: number =  ListUtils.getAverage(percentages, 10)
+            if(isNaN(avg)) avg = 0
+            avgLocalPercentages.set(key, avg)
         })
 
         return avgLocalPercentages
