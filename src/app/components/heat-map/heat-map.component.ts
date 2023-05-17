@@ -40,7 +40,6 @@ export class HeatMapComponent implements OnChanges {
         this.heatMapEntries = this.heatMapEntries.sort((a, b) => b.localHitsPercentage - a.localHitsPercentage)
         
         // set max DU name
-        this.maxDuName = this.heatMapEntries[0].name
 
         let addedDesignUnits = 0
         for(let i = 0; i < this.heatMapEntries.length; i++){
@@ -50,9 +49,10 @@ export class HeatMapComponent implements OnChanges {
             returnedDu.push(entry);
             addedDesignUnits++;
             if(addedDesignUnits == HeatMapService.DESIGN_UNIT_LIMIT){
-                return returnedDu;
+                break;
             }
         }
+        this.maxDuName = returnedDu[0].name
         return returnedDu;
     }
 

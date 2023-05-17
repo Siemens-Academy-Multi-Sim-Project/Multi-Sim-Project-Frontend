@@ -14,11 +14,11 @@
 #hint{
     color: white;
     grid-area: 1 / 1 / 2 / 2;
-    justify-self: center;
     align-self: center;
 }
 
 #toggleBtn {
     grid-area: 1 / 2 / 2 / 3; 
+    align-self: self-end;
 
 }
