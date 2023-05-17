@@ -27,6 +27,12 @@
   font-size: 12px;
 }
 
+.selected {
+  transition: 0.5s;
+  color: lawngreen;
+  font-size: 12px;
+}
+
 .item-data {
   color: white;
   border-radius: 5px;

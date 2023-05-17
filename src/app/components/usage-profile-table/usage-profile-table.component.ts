@@ -37,6 +37,11 @@ export class UsageProfileTableComponent {
   selected_property: string = "";
 
   setItemData(item: string, property: string) {
+    console.log("item: " + item + " property: " + property);
+    if (item === '') {
+
+      return;
+    }
     this.selected_item = item;
     this.selected_property = property;
   }

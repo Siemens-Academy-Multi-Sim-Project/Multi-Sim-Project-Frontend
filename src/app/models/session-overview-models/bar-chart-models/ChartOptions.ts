@@ -59,13 +59,13 @@ export class TreeMapChartOptions {
     noData!: ApexNoData;
 
     static createTreeMapChartOptions(entries: HeatMapEntry[]): TreeMapChartOptions {
-        let dataSeries: { 
-            x: string, 
-            y: number, 
-            fillColor: string, 
-            heatMapEntry: HeatMapEntry 
+        let dataSeries: {
+            x: string,
+            y: number,
+            fillColor: string,
+            heatMapEntry: HeatMapEntry
         }[] = []
-        
+
         let maxAvgLocalPercentage = 0
         entries.forEach((entry) => {
             maxAvgLocalPercentage = Math.max(maxAvgLocalPercentage, entry.avgPercentage)

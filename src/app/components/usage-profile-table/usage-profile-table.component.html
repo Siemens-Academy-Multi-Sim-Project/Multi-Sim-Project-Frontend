@@ -4,6 +4,7 @@
   <ng-container *ngFor="let column of col_defs" matColumnDef="{{column.displayName}}" class="col-container">
     <th mat-header-cell *matHeaderCellDef class="table-header"> {{column.displayName}} </th>
     <td mat-cell *matCellDef="let element" class="col-entry"
+        [ngClass]="{'selected': element[column.property] === selected_item && element[column.property]!='' && column.displayName == selected_property}"
         (click)="setItemData(element[column.property],column.displayName)"> {{element[column.property]}}
 
     </td>
