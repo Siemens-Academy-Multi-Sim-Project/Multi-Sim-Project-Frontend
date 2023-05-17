@@ -1,46 +1,37 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {ChartComponent} from "ng-apexcharts";
-import {BarChartOptions} from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
-import {GroupingStrategy, groupData} from 'src/app/shared/utils/DynamicHistogram';
-import {UnitData} from "../../models/session-overview-models/profiling-data/UnitData";
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChartComponent } from "ng-apexcharts";
+import { BarChartOptions } from 'src/app/models/session-overview-models/bar-chart-models/ChartOptions';
+import { GroupingStrategy, groupData } from 'src/app/shared/utils/DynamicHistogram';
+import { UnitData } from "../../models/session-overview-models/profiling-data/UnitData";
 
 @Component({
   selector: 'app-overview-bar-chart',
   templateUrl: './overview-bar-chart.component.html',
   styleUrls: ['./overview-bar-chart.component.css'],
 })
-export class OverviewBarChartComponent implements OnInit, OnChanges {
+export class OverviewBarChartComponent implements OnChanges {
 
-  @ViewChild("chart", {static: false}) chart!: ChartComponent;
+  @ViewChild("chart", { static: false }) chart!: ChartComponent;
   public chartOptions!: BarChartOptions;
 
-  @Input() public vsimTimes: number[] = [];
-  @Input() public vsimMemories: number[] = [];
-  @Input() public voptMemories: number[] = [];
+  @Input() public chartingData: Map<string, number[]> = new Map<string, number[]>()
 
-  graphingChoices = ["Vsim Time Sec", "Vopt Memory GB", "Vsim Memory GB"]
-  selectedGraphingChoice: string = this.graphingChoices[0]
+  graphingChoices: string[] = []
+  selectedGraphingChoice: string = ""
 
   binStrategy: GroupingStrategy[] = ["Tight Grouping", "Moderate Grouping", "Loose Grouping", "No Grouping"]
   selectedBinStrategy: GroupingStrategy = "Tight Grouping"
 
 
-    ngOnInit(): void {
-        this.renderGraph()
-    }
-    ngOnChanges(changes: SimpleChanges): void {
-        this.renderGraph()
-    }
-    getCurrentlySelectedTestData(): number[]{
-        switch (this.selectedGraphingChoice) {
-            case this.graphingChoices[0]:
-                return this.vsimTimes
-            case this.graphingChoices[1]:
-                return this.voptMemories
-            default:
-                return this.vsimMemories
-        }
-    }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.graphingChoices = Array.from(this.chartingData.keys())
+    this.selectedGraphingChoice = this.graphingChoices[0]
+    this.renderGraph()
+  }
+
+  getCurrentlySelectedData(): number[] {
+    return this.chartingData.get(this.selectedGraphingChoice) || []
+  }
 
   onGraphingDataChanged(): void {
     this.renderGraph();
@@ -48,14 +39,14 @@ export class OverviewBarChartComponent implements OnInit, OnChanges {
 
 
   private renderGraph() {
-    let currentData = this.getCurrentlySelectedTestData();
+    let currentData = this.getCurrentlySelectedData();
     let currentStrategy = this.selectedBinStrategy;
 
-    let buckets = groupData(currentData, currentStrategy);
+    let [labels, counts] = groupData(currentData, currentStrategy);
     this.chartOptions = BarChartOptions.createBarChartOptions(
       this.selectedGraphingChoice,
-      buckets[0],
-      buckets[1]
+      labels,
+      counts
     );
   }
 }

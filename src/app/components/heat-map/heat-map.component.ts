@@ -14,13 +14,14 @@ import { OverviewService } from 'src/app/services/overview-service/overview.serv
     templateUrl: './heat-map.component.html',
     styleUrls: ['./heat-map.component.css'],
 })
-export class HeatMapComponent implements OnInit, OnChanges {
+export class HeatMapComponent implements OnChanges {
 
     @ViewChild("chart") chart!: ChartComponent;
     public chartOptions!: TreeMapChartOptions;
 
     @Input() heatMapEntries: HeatMapEntry[] = []
     showSystemCalls: boolean = false
+    maxDuName: string | null = null
 
     ngOnInit(): void {
         this.renderGraph()
@@ -38,6 +39,9 @@ export class HeatMapComponent implements OnInit, OnChanges {
         let returnedDu: HeatMapEntry[] = []
         this.heatMapEntries = this.heatMapEntries.sort((a, b) => b.localHitsPercentage - a.localHitsPercentage)
         
+        // set max DU name
+        this.maxDuName = this.heatMapEntries[0].name
+
         let addedDesignUnits = 0
         for(let i = 0; i < this.heatMapEntries.length; i++){
             let entry = this.heatMapEntries[i]

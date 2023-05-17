@@ -55,6 +55,26 @@ export class OverviewService {
     return this.barChartService.getVsimMemory(this.profilingDataArray)
   }
 
+  getChartingData(): Map<string, number[]>{
+    let map = new Map<string, number[]>()
+
+    map.set(
+      "Vsim Time Sec", this.getVsimTimes()
+    )
+
+
+    map.set(
+      "Vopt Memory GB", this.getVoptMemory()
+    )
+
+
+    map.set(
+      "Vsim Memory GB", this.getVsimMemory()
+    )
+
+    return map
+  }
+
   getTotalSimulations(): SingleAttribute {
     return this.topOverviewService.getTotalSimulations(this.profilingDataArray)
   }

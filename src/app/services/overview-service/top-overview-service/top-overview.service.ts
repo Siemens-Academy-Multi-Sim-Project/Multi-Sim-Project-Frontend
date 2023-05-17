@@ -37,7 +37,7 @@ export class TopOverviewService {
 
     let measuring_unit = profilingDataArray[0].voptTime.split(" ")
 
-    voptTimes.sort();
+    voptTimes.sort((a, b) => a-b);
 
     return {
       min: voptTimes[0],
@@ -60,7 +60,7 @@ export class TopOverviewService {
 
     let measuring_unit = profilingDataArray[0].vsimTime.split(" ")
 
-    vsimTimes.sort();
+    vsimTimes.sort((a, b) => a-b);
 
     return {
       min: vsimTimes[0],
@@ -82,7 +82,7 @@ export class TopOverviewService {
     })
 
     let measuring_unit = profilingDataArray[0].voptMemory.split(" ")
-    VoptMemory.sort();
+    VoptMemory.sort((a, b) => a-b);
 
     return {
       min: VoptMemory[0],
@@ -99,11 +99,11 @@ export class TopOverviewService {
     let VsimMemory: number[] = []
 
     profilingDataArray.forEach((data) => {
-      let unitData = new UnitData(data.vsimTime)
+      let unitData = new UnitData(data.vsimMemory)
       VsimMemory.push(unitData.value)
     })
 
-    VsimMemory.sort();
+    VsimMemory.sort((a, b) => a-b);
     let measuring_unit = profilingDataArray[0].vsimMemory.split(" ")
 
     return {
