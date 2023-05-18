@@ -8,8 +8,5 @@
     [tooltip]="chartOptions.tooltip"
     [noData]="chartOptions.noData"
   ></apx-chart>
-  <div id="info-container">
-    <div *ngIf="maxDuName != null" id="hint">Entries are colored relative to <b>{{maxDuName}}</b></div>
-    <app-toggle-button id="toggleBtn" (isToggledEmitter)="toggleShowingSystemCalls($event)"/>
-  </div>
+  <app-toggle-button id="toggleBtn" (isToggledEmitter)="toggleShowingSystemCalls($event)"/>
 </div>

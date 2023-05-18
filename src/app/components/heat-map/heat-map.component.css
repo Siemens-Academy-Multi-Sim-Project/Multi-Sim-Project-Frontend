@@ -3,22 +3,6 @@
     width: 700;
 }
 
-
-#info-container{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr;
-    grid-column-gap: 10px;
-    grid-row-gap: 0px;
-}
-#hint{
-    color: white;
-    grid-area: 1 / 1 / 2 / 2;
-    align-self: center;
-}
-
 #toggleBtn {
-    grid-area: 1 / 2 / 2 / 3; 
     align-self: self-end;
-
 }

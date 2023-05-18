@@ -123,7 +123,7 @@ function createToolTip(entry: HeatMapEntry): string {
     // of the heat map component is to set the position to fixed
     // but changing the page size messes up the tooltip position
     return `
-    <div class="card" style="position: fixed;">
+    <div class="card" >
         <div class="card-body">
             <p class="card-text"><b>DU Name:</b> ${name}</p>
             <hr style="border-top: 2px solid blue">
