@@ -8,20 +8,20 @@
           <a href="/session-overview?clusterId={{i.id}}" class="list-group-item list-group-item-action"><fa-icon class="file-icon-container" [icon]="faFile"></fa-icon>{{i.clusterName}}</a>
         </div>
       </div>
-      
+
     </div>
     <div class="col-sm-6 text-white p-3">
       <div class="upload-file-container">
         <h1>File Upload</h1>
         <form [formGroup]="fileUploadForm" class="form" (submit)="onSubmit()">
           <div class="form-group">
-            <label id="clusterName" for="clusterName">Enter Cluster/Session Name</label>
+            <label id="clusterName" for="clusterName">Enter Session Name</label>
             <br>
             <input type="text" formControlName="clusterName" class="clusterName">
             <br>
-      
+
             <br>
-      
+
             <label id="file" for="file">Select File(s)</label>
             <input type="file" multiple formControlName="file" class="form-control-file" name="file"
                    (change)="onFileSelect($event)">
@@ -29,7 +29,7 @@
           <div *ngIf="files.size > 0" class="selected-files">
             <h3>Selected Files:</h3>
             <ul>
-              <li  *ngFor="let file of files | keyvalue"> 
+              <li  *ngFor="let file of files | keyvalue">
                 {{ file.key }}
                 <div style="display: inline-flex" [ngSwitch]="filesStates.get(file.key)">
                   <button *ngSwitchCase="Idle" type="button" class="btn btn-sm btn-danger" (click)="removeSelectedFileMap(file.key)">Remove</button>
