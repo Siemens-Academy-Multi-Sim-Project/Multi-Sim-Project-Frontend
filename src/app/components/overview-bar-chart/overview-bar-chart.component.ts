@@ -9,7 +9,11 @@ import { UnitData } from "../../models/session-overview-models/profiling-data/Un
   templateUrl: './overview-bar-chart.component.html',
   styleUrls: ['./overview-bar-chart.component.css'],
 })
-export class OverviewBarChartComponent implements OnChanges {
+export class OverviewBarChartComponent implements OnChanges, OnInit {
+
+  ngOnInit(): void {
+    this.renderGraph()
+  }
 
   @ViewChild("chart", { static: false }) chart!: ChartComponent;
   public chartOptions!: BarChartOptions;

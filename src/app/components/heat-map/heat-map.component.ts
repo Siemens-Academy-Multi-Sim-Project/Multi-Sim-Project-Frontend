@@ -14,7 +14,7 @@ import { OverviewService } from 'src/app/services/overview-service/overview.serv
     templateUrl: './heat-map.component.html',
     styleUrls: ['./heat-map.component.css'],
 })
-export class HeatMapComponent implements OnChanges {
+export class HeatMapComponent implements OnInit, OnChanges {
 
     @ViewChild("chart") chart!: ChartComponent;
     public chartOptions!: TreeMapChartOptions;
@@ -39,7 +39,7 @@ export class HeatMapComponent implements OnChanges {
         let returnedDu: HeatMapEntry[] = []
         this.heatMapEntries = this.heatMapEntries.sort((a, b) => b.localHitsPercentage - a.localHitsPercentage)
         
-        // set max DU name
+        if(this.heatMapEntries.length == 0) return []
 
         let addedDesignUnits = 0
         for(let i = 0; i < this.heatMapEntries.length; i++){

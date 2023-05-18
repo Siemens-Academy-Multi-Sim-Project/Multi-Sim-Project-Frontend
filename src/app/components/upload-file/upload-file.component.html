@@ -2,7 +2,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col-sm-6 text-white p-3">
-      <label class="title-container">Recent Clusters/Sessions</label>
+      <label class="title-container">Recent Sessions</label>
       <div class="container mt-4">
         <div class="list-group" *ngFor="let i of profilingDataClusters">
           <a href="/session-overview?clusterId={{i.id}}" class="list-group-item list-group-item-action"><fa-icon class="file-icon-container" [icon]="faFile"></fa-icon>{{i.clusterName}}</a>
